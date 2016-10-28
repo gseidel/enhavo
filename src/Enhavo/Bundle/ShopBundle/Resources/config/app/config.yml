@@ -172,7 +172,7 @@ sylius_resource:
     resources:
         sylius.product_variant:
             classes:
-                model: Sylius\Component\Core\Model\ProductVariant
+                model: Enhavo\Bundle\ShopBundle\Entity\ProductVariant
                 controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
         sylius.product_archetype:
             classes:
