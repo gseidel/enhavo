@@ -9,7 +9,6 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
-            new Sylius\Bundle\CartBundle\SyliusCartBundle(),
             new Sylius\Bundle\OrderBundle\SyliusOrderBundle(),
             new Sylius\Bundle\MoneyBundle\SyliusMoneyBundle(),
             new Sylius\Bundle\CurrencyBundle\SyliusCurrencyBundle(),
@@ -21,8 +20,6 @@ class AppKernel extends Kernel
             new Sylius\Bundle\TaxationBundle\SyliusTaxationBundle(),
             new Sylius\Bundle\ProductBundle\SyliusProductBundle(),
             new Sylius\Bundle\AttributeBundle\SyliusAttributeBundle(),
-            new Sylius\Bundle\ArchetypeBundle\SyliusArchetypeBundle(),
-            new Sylius\Bundle\VariationBundle\SyliusVariationBundle(),
             new Sylius\Bundle\InventoryBundle\SyliusInventoryBundle(),
 
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),

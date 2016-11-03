@@ -1,29 +1,29 @@
-Enhavo\Bundle\ShopBundle\Entity\Order:
+Enhavo\Bundle\ShopBundle\Entity\ProductVariant:
     type: entity
     table: shop_product_variant
 
     fields:
-        price:
+        variantPrice:
             type: integer
             nullable: true
 
-        height:
+        variantHeight:
             type: integer
             nullable: true
 
-        width:
+        variantWidth:
             type: integer
             nullable: true
 
-        depth:
+        variantDepth:
             type: integer
             nullable: true
 
-        volume:
+        variantVolume:
             type: integer
             nullable: true
 
-        weight:
+        variantWeight:
             type: integer
             nullable: true
 

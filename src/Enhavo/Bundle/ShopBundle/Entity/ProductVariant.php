@@ -8,11 +8,23 @@
 
 namespace Enhavo\Bundle\ShopBundle\Entity;
 
+use Enhavo\Bundle\MediaBundle\Model\FileInterface;
 use Enhavo\Bundle\ShopBundle\Model\ProductInterface;
-use Sylius\Component\Variation\Model\Variant;
+use Sylius\Component\Taxation\Model\TaxRateInterface;
+use Sylius\Component\Product\Model\ProductVariant as SyliusProductVariant;
 
-class ProductVariant extends Variant
+class ProductVariant extends SyliusProductVariant
 {
+    /**
+     * @var FileInterface
+     */
+    private $picture;
+
+    /**
+     * @var TaxRateInterface
+     */
+    private $taxRate;
+
     /**
      * @var int
      */
@@ -156,6 +168,7 @@ class ProductVariant extends Variant
         }
         return $this->getVariantHeight();
     }
+    
     public function getDepth()
     {
         $product = $this->getObject();
@@ -164,6 +177,7 @@ class ProductVariant extends Variant
         }
         return $this->getVariantDepth();
     }
+    
     public function getPrice()
     {
         $product = $this->getObject();
@@ -172,6 +186,7 @@ class ProductVariant extends Variant
         }
         return $this->getVariantPrice();
     }
+    
     public function getVolume()
     {
         $product = $this->getObject();
@@ -180,6 +195,7 @@ class ProductVariant extends Variant
         }
         return $this->getVariantVolume();
     }
+    
     public function getWeight()
     {
         $product = $this->getObject();
@@ -187,5 +203,37 @@ class ProductVariant extends Variant
             return $product->getWeight();
         }
         return $this->getVariantWeight();
+    }
+
+    /**
+     * @return FileInterface
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * @param FileInterface $picture
+     */
+    public function setPicture(FileInterface $picture = null)
+    {
+        $this->picture = $picture;
+    }
+
+    /**
+     * @return TaxRateInterface
+     */
+    public function getTaxRate()
+    {
+        return $this->taxRate;
+    }
+
+    /**
+     * @param TaxRateInterface $taxRate
+     */
+    public function setTaxRate(TaxRateInterface $taxRate = null)
+    {
+        $this->taxRate = $taxRate;
     }
 }
