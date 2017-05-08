@@ -1,7 +1,7 @@
-twig:
-    form:
-        resources:
-            - 'EnhavoTranslationBundle:Form:fields.html.twig'
+#twig:
+#    form:
+#        resources:
+#            - 'EnhavoTranslationBundle:Form:fields.html.twig'
 
 enhavo_translation:
     default_locale: '%locale%'

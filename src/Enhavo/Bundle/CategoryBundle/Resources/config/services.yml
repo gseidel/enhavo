@@ -13,7 +13,7 @@ services:
             - { name: form.type }
 
     enhavo_category:
-        class: '%enhavo_category.class%'
+        class: Enhavo\Bundle\CategoryBundle\Form\Type\CategoryEntityType
         arguments:
             - '@doctrine.orm.entity_manager'
             - '%enhavo_category.model.category.class%'
@@ -22,7 +22,7 @@ services:
             - { name: form.type, alias: 'enhavo_category'}
 
     enhavo_category_category:
-        class: '%enhavo_category.form.type.category.class%'
+        class: Enhavo\Bundle\CategoryBundle\Form\Type\CategoryType
         arguments:
             - '%enhavo_category.model.category.class%'
             - '%enhavo_translation.translate%'

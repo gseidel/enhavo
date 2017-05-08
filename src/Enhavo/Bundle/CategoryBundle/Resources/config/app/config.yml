@@ -1,7 +1,7 @@
 twig:
-    form:
-        resources:
-            - 'EnhavoCategoryBundle:Form:fields.html.twig'
+#    form:
+#        resources:
+#            - 'EnhavoCategoryBundle:Form:fields.html.twig'
 
 doctrine:
     orm:

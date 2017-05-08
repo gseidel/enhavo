@@ -2,7 +2,7 @@ parameters:
 
 services:
     enhavo_page_page:
-        class: '%enhavo_page.form.type.page.class%'
+        class: Enhavo\Bundle\PageBundle\Form\Type\PageType
         arguments:
             - '%enhavo_page.model.page.class%'
             - '%enhavo_page.routing.page.strategy%'

@@ -2,15 +2,8 @@ parameters:
     enhavo_slider.form.type.slider_order.class: Enhavo\Bundle\SliderBundle\Form\Type\SlideOrderType
 
 services:
-    enhavo_slider_slide_order:
-        class: '%enhavo_slider.form.type.slider_order.class%'
-        arguments:
-            - '%enhavo_slider.model.slide.class%'
-        tags:
-            - { name: form.type }
-
     enhavo_slider_slide:
-        class: '%enhavo_slider.form.type.slide.class%'
+        class: Enhavo\Bundle\SliderBundle\Form\Type\SlideType
         arguments:
             - '%enhavo_slider.model.slide.class%'
             - '%enhavo_translation.translate%'
@@ -18,7 +11,7 @@ services:
             - { name: form.type }
 
     enhavo_slider_slider:
-        class: '%enhavo_slider.form.type.slider.class%'
+        class: Enhavo\Bundle\SliderBundle\Form\Type\SliderType
         arguments:
             - '%enhavo_slider.model.slider.class%'
         tags:

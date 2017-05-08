@@ -5,16 +5,18 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Debug\Debug;
 
-$loader = require __DIR__.'/../app/autoload.php';
-require_once __DIR__.'/../app/bootstrap.php.cache';
-
 set_time_limit(0);
+
+/**
+ * @var Composer\Autoload\ClassLoader $loader
+ */
+$loader = require __DIR__.'/../app/autoload.php';
 
 $environment = new Environment();
 
 $input = new ArgvInput();
-$env = $input->getParameterOption(array('--env', '-e'), $environment->getEnvironment());
-$debug = !$input->hasParameterOption(array('--no-debug', '')) && $environment->isDebug();
+$env = $input->getParameterOption(['--env', '-e'], getenv('SYMFONY_ENV') ?: $environment->getEnvironment());
+$debug = $environment->isDebug() && !$input->hasParameterOption(['--no-debug', '']);
 
 if ($debug) {
     Debug::enable();
@@ -23,3 +25,4 @@ if ($debug) {
 $kernel = new AppKernel($env, $debug);
 $application = new Application($kernel);
 $application->run($input);
+

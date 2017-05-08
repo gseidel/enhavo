@@ -2,11 +2,11 @@ parameters:
 
 services:
     enhavo_download_download:
-        class: %enhavo_download.form.type.download.class%
+        class: Enhavo\Bundle\DownloadBundle\Form\Type\DownloadType
         arguments:
-            - %enhavo_download.model.download.class%
-            - %enhavo_translation.translate%
-            - @router
+            - '%enhavo_download.model.download.class%'
+            - '%enhavo_translation.translate%'
+            - '@router'
         tags:
             - { name: form.type }
 
@@ -14,7 +14,7 @@ services:
         class: Enhavo\Bundle\AppBundle\EventListener\DoctrineExtendListener
         arguments:
             - Enhavo\Bundle\DownloadBundle\Entity\Download
-            - %enhavo_download.model.download.class%
+            - '%enhavo_download.model.download.class%'
             - true
         tags:
             - { name: doctrine.event_subscriber, connection: default }

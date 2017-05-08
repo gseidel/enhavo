@@ -29,7 +29,7 @@ class CheckoutController extends AppController
      */
     protected function getCartProvider()
     {
-        return $this->get('sylius.cart_provider');
+        return $this->get('sylius.context.cart.session_based');
     }
 
     /**

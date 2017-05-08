@@ -3,18 +3,18 @@ cmf_routing:
         controllers_by_class:
             Enhavo\Bundle\ShopBundle\Entity\Product: sylius.controller.product:showResourceAction
 
-sylius_cart:
-    resolver: enhavo.shop.cart_item_resolver
-    resources:
-        cart:
-            classes:
-                model: Enhavo\Bundle\ShopBundle\Entity\Order
-                controller: Enhavo\Bundle\ShopBundle\Controller\CartController
-
-        cart_item:
-            classes:
-                model: Enhavo\Bundle\ShopBundle\Entity\OrderItem
-                controller: Enhavo\Bundle\ShopBundle\Controller\CartItemController
+#sylius_cart:
+#    resolver: enhavo.shop.cart_item_resolver
+#    resources:
+#        cart:
+#            classes:
+#                model: Enhavo\Bundle\ShopBundle\Entity\Order
+#                controller: Enhavo\Bundle\ShopBundle\Controller\CartController
+#
+#        cart_item:
+#            classes:
+#                model: Enhavo\Bundle\ShopBundle\Entity\OrderItem
+#                controller: Enhavo\Bundle\ShopBundle\Controller\CartItemController
 
 sylius_order:
     resources:
@@ -23,8 +23,7 @@ sylius_order:
                 model: Enhavo\Bundle\ShopBundle\Entity\Order
                 controller: Enhavo\Bundle\ShopBundle\Controller\OrderController
                 repository: Enhavo\Bundle\ShopBundle\Repository\OrderRepository
-                form:
-                    default: Enhavo\Bundle\ShopBundle\Form\Type\OrderType
+                form: Enhavo\Bundle\ShopBundle\Form\Type\OrderType
 
         order_item:
             classes:
@@ -65,13 +64,13 @@ payum:
         config_storage:
             Sylius\Bundle\PayumBundle\Model\GatewayConfig: { doctrine: orm }
 
-    gateways_v2:
-        paypal_express_checkout:
-            factory: paypal_express_checkout_nvp
-            username: "%paypal.express_checkout.username%"
-            password: "%paypal.express_checkout.password%"
-            signature: "%paypal.express_checkout.signature%"
-            sandbox: "%paypal.express_checkout.sandbox%"
+#    gateways_v2:
+#        paypal_express_checkout:
+#            factory: paypal_express_checkout_nvp
+#            username: "%paypal.express_checkout.username%"
+#            password: "%paypal.express_checkout.password%"
+#            signature: "%paypal.express_checkout.signature%"
+#            sandbox: "%paypal.express_checkout.sandbox%"
 
     gateways:
         offline:
@@ -167,22 +166,6 @@ jms_serializer:
                 namespace_prefix: "Enhavo\\Bundle\\ShopBundle"
                 path: "@EnhavoShopBundle/Resources/config/serializer"
 
-
-sylius_resource:
-    resources:
-        sylius.product_variant:
-            classes:
-                model: Enhavo\Bundle\ShopBundle\Entity\ProductVariant
-                controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
-        sylius.product_archetype:
-            classes:
-                model: Sylius\Component\Archetype\Model\Archetype
-                controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
-        sylius.product_attribute_value:
-            classes:
-                model: Sylius\Component\Product\Model\AttributeValue
-                controller: Enhavo\Bundle\AppBundle\Controller\ResourceController
-
 sylius_inventory:
     resources:
 
@@ -193,8 +176,7 @@ sylius_product:
                 controller: Enhavo\Bundle\ShopBundle\Controller\ProductController
                 model: Enhavo\Bundle\ShopBundle\Entity\Product
                 repository: Enhavo\Bundle\ShopBundle\Repository\ProductRepository
-                form:
-                    default: Enhavo\Bundle\ShopBundle\Form\Type\ProductType
+                form: Enhavo\Bundle\ShopBundle\Form\Type\ProductType
 
 services:
     sylius.builder.product_archetype:

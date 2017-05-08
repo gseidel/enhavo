@@ -28,7 +28,7 @@ class CouponRedeemWidget extends AbstractType implements WidgetInterface
         $formType = $this->getOption('form', $options, 'enhavo_shop_order_promotion_coupon');
 
         if(!array_key_exists('order', $options)) {
-            $cart = $this->container->get('sylius.cart_provider')->getCart();
+            $cart = $this->container->get('sylius.context.cart.session_based')->getCart();
             $options['order'] = $cart;
         }
 

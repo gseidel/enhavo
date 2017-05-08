@@ -1,9 +1,9 @@
 <?php
 namespace Enhavo\Bundle\DownloadBundle\Factory;
 
+use Enhavo\Bundle\AppBundle\Factory\Factory;
 use Enhavo\Bundle\DownloadBundle\Entity\Download;
 use Enhavo\Bundle\MediaBundle\Factory\FileFactory;
-use Sylius\Component\Resource\Factory\Factory;
 
 class DownloadFactory extends Factory
 {

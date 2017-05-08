@@ -23,7 +23,7 @@ class Configuration
      */
     private $assetsHelper;
 
-    public function __construct($configuration, AssetsHelper $assetsHelper)
+    public function __construct($configuration, AssetsHelper $assetsHelper = null)
     {
         $this->configuration = $configuration;
         $this->assetsHelper = $assetsHelper;
@@ -53,9 +53,9 @@ class Configuration
         }
 
 
-        if($this->assetsHelper->getVersion()) {
-            $config['urlArgs'] = $this->assetsHelper->getVersion();
-        }
+#        if($this->assetsHelper->getVersion()) {
+#            $config['urlArgs'] = $this->assetsHelper->getVersion();
+#        }
 
         return $config;
     }

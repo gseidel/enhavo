@@ -147,6 +147,6 @@ class OrderController extends ResourceController
 
     private function getCart()
     {
-        return $this->get('sylius.cart_provider')->getCart();
+        return $this->get('sylius.context.cart.session_based')->getCart();
     }
 }

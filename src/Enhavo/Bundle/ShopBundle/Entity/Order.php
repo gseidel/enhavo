@@ -11,16 +11,16 @@ namespace Enhavo\Bundle\ShopBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Enhavo\Bundle\UserBundle\Model\UserInterface;
-use Sylius\Component\Cart\Model\Cart;
 use Enhavo\Bundle\ShopBundle\Model\OrderInterface;
 use Enhavo\Bundle\ShopBundle\Model\ShipmentInterface;
 use Sylius\Component\Addressing\Model\AddressInterface;
 use Enhavo\Bundle\ShopBundle\Model\AdjustmentInterface;
-use Sylius\Component\Promotion\Model\CouponInterface;
+use Sylius\Component\Promotion\Model\PromotionCouponInterface;
 use Sylius\Component\Payment\Model\PaymentInterface;
 use Sylius\Component\Promotion\Model\PromotionInterface;
+use Sylius\Component\Order\Model\Order as SyliusOrder;
 
-class Order extends Cart implements OrderInterface
+class Order extends SyliusOrder implements OrderInterface
 {
     /**
      * @var string
@@ -38,7 +38,7 @@ class Order extends Cart implements OrderInterface
     private $shippingState;
 
     /**
-     * @var CouponInterface
+     * @var PromotionCouponInterface
      */
     private $promotionCoupon;
 
@@ -183,11 +183,11 @@ class Order extends Cart implements OrderInterface
     /**
      * Set promotionCoupon
      *
-     * @param CouponInterface $promotionCoupon
+     * @param PromotionCouponInterface $promotionCoupon
      *
      * @return Order
      */
-    public function setPromotionCoupon(CouponInterface $promotionCoupon = null)
+    public function setPromotionCoupon(PromotionCouponInterface $promotionCoupon = null)
     {
         $this->promotionCoupon = $promotionCoupon;
 
@@ -197,7 +197,7 @@ class Order extends Cart implements OrderInterface
     /**
      * Get promotionCoupon
      *
-     * @return CouponInterface
+     * @return PromotionCouponInterface
      */
     public function getPromotionCoupon()
     {

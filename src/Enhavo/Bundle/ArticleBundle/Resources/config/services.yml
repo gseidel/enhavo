@@ -1,6 +1,6 @@
 services:
     enhavo_article_article:
-        class: '%enhavo_article.form.type.article.class%'
+        class: Enhavo\Bundle\ArticleBundle\Form\Type\ArticleType
         arguments:
             - '%enhavo_article.model.article.class%'
             - '%enhavo_article.routing.article.strategy%'

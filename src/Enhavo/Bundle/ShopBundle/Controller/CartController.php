@@ -10,15 +10,15 @@ namespace Enhavo\Bundle\ShopBundle\Controller;
 
 
 use Enhavo\Bundle\ShopBundle\Entity\OrderItem;
-use Sylius\Bundle\CartBundle\Controller\CartController as SyliusCartController;
-use Sylius\Component\Cart\SyliusCartEvents;
+use Sylius\Bundle\OrderBundle\Controller\OrderController as SyliusOrderController;
+use Sylius\Component\Order\SyliusCartEvents;
 use Symfony\Component\HttpFoundation\Request;
-use Sylius\Component\Cart\Event\CartEvent;
+use Sylius\Component\Order\Event\CartEvent;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Sylius\Component\Resource\Event\FlashEvent;
-use Sylius\Component\Cart\Event\CartItemEvent;
+use Sylius\Component\Order\Event\CartItemEvent;
 
-class CartController extends SyliusCartController
+class CartController extends SyliusOrderController
 {
     use CartSummaryTrait;
 

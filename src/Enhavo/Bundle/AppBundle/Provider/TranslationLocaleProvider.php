@@ -9,7 +9,7 @@
 
 namespace Enhavo\Bundle\AppBundle\Provider;
 
-use Sylius\Component\Resource\Provider\LocaleProviderInterface;
+use Sylius\Component\Locale\Provider\LocaleProviderInterface;
 
 class TranslationLocaleProvider implements LocaleProviderInterface
 {
@@ -20,17 +20,18 @@ class TranslationLocaleProvider implements LocaleProviderInterface
         $this->locale = $locale;
     }
 
-    public function getCurrentLocale()
+    /**
+     * @return string[]
+     */
+    public function getAvailableLocalesCodes()
     {
-        return $this->locale;
+        return [$this->locale];
     }
 
-    public function getFallbackLocale()
-    {
-        return $this->locale;
-    }
-
-    public function getDefaultLocale()
+    /**
+     * @return string
+     */
+    public function getDefaultLocaleCode()
     {
         return $this->locale;
     }

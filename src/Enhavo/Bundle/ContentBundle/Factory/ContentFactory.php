@@ -1,8 +1,8 @@
 <?php
 namespace Enhavo\Bundle\ContentBundle\Factory;
 
+use Enhavo\Bundle\AppBundle\Factory\Factory;
 use Enhavo\Bundle\ContentBundle\Entity\Content;
-use Sylius\Component\Resource\Factory\Factory;
 
 class ContentFactory extends Factory
 {
@@ -32,5 +32,26 @@ class ContentFactory extends Factory
         $newResource->setUpdated(new \DateTime());
 
         return $newResource;
+    }
+
+    /**
+     * @var string
+     */
+    private $className;
+
+    /**
+     * @param string $className
+     */
+    public function __construct($className)
+    {
+        $this->className = $className;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createNew()
+    {
+        return new $this->className();
     }
 }

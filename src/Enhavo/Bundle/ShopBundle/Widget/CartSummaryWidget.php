@@ -28,7 +28,7 @@ class CartSummaryWidget extends AbstractType implements WidgetInterface
 
         $cart = $resolvedOptions['cart'];
         if(empty($cart)) {
-            $cart = $this->container->get('sylius.cart_provider')->getCart();
+            $cart = $this->container->get('sylius.context.cart.session_based')->getCart();
         }
         
         return $this->renderTemplate($resolvedOptions['template'], [
