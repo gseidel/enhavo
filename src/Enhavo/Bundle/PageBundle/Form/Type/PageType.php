@@ -2,6 +2,7 @@
 
 namespace Enhavo\Bundle\PageBundle\Form\Type;
 
+use Enhavo\Bundle\GridBundle\Form\Type\GridType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,7 +33,7 @@ class PageType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('grid', 'enhavo_grid', array(
+        $builder->add('grid', GridType::class, array(
             'label' => 'form.label.content',
             'translation_domain' => 'EnhavoAppBundle',
         ));

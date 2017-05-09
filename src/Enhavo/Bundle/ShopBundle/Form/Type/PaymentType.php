@@ -8,6 +8,7 @@
 
 namespace Enhavo\Bundle\ShopBundle\Form\Type;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -35,7 +36,7 @@ class PaymentType extends AbstractType
         parent::buildForm($builder, $options);
 
         $builder
-            ->add('method', 'entity',[
+            ->add('method', EntityType::class,[
                 'class' => $this->paymentClass,
                 'choice_label' => 'code',
                 'expanded' => true

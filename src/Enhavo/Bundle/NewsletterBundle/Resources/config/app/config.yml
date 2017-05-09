@@ -21,7 +21,7 @@ enhavo_newsletter:
                 sender_name: '%mailer_name%'
     forms:
         default:
-            type: enhavo_newsletter_subscribe
+            type: Enhavo\Bundle\NewsletterBundle\Form\Type\SubscribeType
             template: EnhavoNewsletterBundle:Subscriber:subscribe.html.twig
 
 enhavo_app:

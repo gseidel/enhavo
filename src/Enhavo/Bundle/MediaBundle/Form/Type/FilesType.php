@@ -11,6 +11,7 @@ namespace Enhavo\Bundle\MediaBundle\Form\Type;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormEvents;
@@ -108,7 +109,7 @@ class FilesType extends AbstractType
         $view->vars['fields'] = $fields;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'multiple'      => true,
@@ -121,11 +122,8 @@ class FilesType extends AbstractType
                     'label'             => 'media.form.label.alt_tag',
                     'translationDomain' => 'EnhavoMediaBundle'
                 )
-            )
-        ));
-
-        $resolver->setOptional(array(
-            'information'
+            ),
+            'information' => ''
         ));
     }
 

@@ -9,6 +9,7 @@
 
 namespace Enhavo\Bundle\ShopBundle\Form\Type;
 
+use Enhavo\Bundle\AppBundle\Form\Type\ListType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,7 +30,7 @@ class ProductOptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('code', TextType::class);
-        $builder->add('values', 'enhavo_list', [
+        $builder->add('values', ListType::class, [
             'type' => 'sylius_product_option_value'
         ]);
     }

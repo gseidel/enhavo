@@ -10,6 +10,8 @@ namespace Enhavo\Bundle\AppBundle\Form\Type;
 
 use Enhavo\Bundle\AppBundle\Form\Config\WysiwygOption;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
@@ -18,7 +20,7 @@ use Enhavo\Bundle\AppBundle\Form\Config\WysiwygConfig;
 class WysiwygType extends AbstractType
 {
     /**
-     * Sometimes uniqid() does npt provide a unique id (see enhavo ticket #160)
+     * Sometimes uniqid() does npo provide a unique id (see enhavo ticket #160)
      * So we use this number as a prefix and increase it every time to ensure uniqueness
      *
      * @var int
@@ -51,7 +53,7 @@ class WysiwygType extends AbstractType
         $view->vars['config'] = $this->config->getData($option);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'formats' => array(),
@@ -64,7 +66,7 @@ class WysiwygType extends AbstractType
 
     public function getParent()
     {
-        return 'textarea';
+        return TextareaType::class;
     }
 
     public function getName()

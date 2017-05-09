@@ -11,6 +11,8 @@ namespace Enhavo\Bundle\UserBundle\Form\Type;
 use Enhavo\Bundle\AppBundle\Security\Roles\AdminRolesProvider;
 use Enhavo\Bundle\AppBundle\Security\Roles\RolesProvider;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Security\Core\Role\RoleHierarchyInterface;
 
@@ -33,16 +35,16 @@ class GroupType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text', array(
+        $builder->add('name', TextType::class, array(
             'label' => 'group.form.label.name',
             'translation_domain' => 'EnhavoUserBundle'
 
         ));
 
-        $builder->add('roles', 'choice', array(
+        $builder->add('roles', ChoiceType::class, array(
             'label' => 'group.form.label.roles',
             'translation_domain' => 'EnhavoUserBundle',
-            'choices' => $this->rolesProvider->getRoles(),
+            'choices' => array_flip($this->rolesProvider->getRoles()),
             'multiple' => true,
             'expanded' => true
         ));

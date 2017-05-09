@@ -9,6 +9,7 @@
 namespace Enhavo\Bundle\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class ProfileType extends AbstractType
@@ -30,12 +31,12 @@ class ProfileType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstName', 'text', array(
+        $builder->add('firstName', TextType::class, array(
             'label' => 'user.form.label.firstName',
             'translation_domain' => 'EnhavoUserBundle'
         ));
 
-        $builder->add('lastName', 'text', array(
+        $builder->add('lastName', TextType::class, array(
             'label' => 'user.form.label.lastName',
             'translation_domain' => 'EnhavoUserBundle'
         ));

@@ -53,7 +53,7 @@ class RoutingType extends AbstractType
                     throw new \Exception('Routing strategy slug used, but data has no getSlug method nor is instanceof Slugable');
                 }
 
-                $form->add('slug', 'enhavo_slug');
+                $form->add('slug', SlugType::class);
             }
 
             if ($options['routing_strategy'] === Routing::STRATEGY_SLUG_ID) {
@@ -65,7 +65,7 @@ class RoutingType extends AbstractType
                     throw new \Exception('Routing strategy id_slug used, but data has no getId method');
                 }
 
-                $form->add('slug', 'enhavo_slug', array());
+                $form->add('slug', SlugType::class, array());
             }
 
             if ($options['routing_strategy'] === Routing::STRATEGY_ROUTE) {
@@ -73,7 +73,7 @@ class RoutingType extends AbstractType
                     throw new \Exception('Routing strategy route used, but data is not instanceof Routeable');
                 }
 
-                $form->add('route', 'enhavo_route');
+                $form->add('route', RouteType::class);
             }
             
             if($data) {

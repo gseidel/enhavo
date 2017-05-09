@@ -9,6 +9,7 @@
 namespace Enhavo\Bundle\ShopBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvent;
@@ -37,7 +38,7 @@ class UserAddressType extends AbstractType
         });
         $builder->add('billingAddress', 'sylius_address');
         $builder->add('shippingAddress', 'sylius_address');
-        $builder->add('differentBillingAddress', 'checkbox', [
+        $builder->add('differentBillingAddress', CheckboxType::class, [
             'required' => false,
             'label' => 'checkout.addressing.form.label.different_billing_address',
             'translation_domain' => 'EnhavoShopBundle',

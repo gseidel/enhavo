@@ -9,6 +9,7 @@
 namespace Enhavo\Bundle\SliderBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -24,7 +25,7 @@ class SlideOrderType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('order', 'hidden', array(
+        $builder->add('order', HiddenType::class, array(
             'attr' => array(
                 'data-sort-order' => ''
             )

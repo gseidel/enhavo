@@ -23,7 +23,7 @@ class OrderShipmentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('shipment', 'enhavo_shop_shipment');
+        $builder->add('shipment', ShipmentType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

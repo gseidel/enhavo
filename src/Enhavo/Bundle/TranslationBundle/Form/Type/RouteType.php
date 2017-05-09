@@ -9,6 +9,7 @@
 namespace Enhavo\Bundle\TranslationBundle\Form\Type;
 
 use Enhavo\Bundle\AppBundle\Form\Type\RouteType as AppRouteType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class RouteType extends AppRouteType
@@ -29,7 +30,7 @@ class RouteType extends AppRouteType
 
         $builder->remove('staticPrefix');
         
-        $builder->add('staticPrefix', 'text', [
+        $builder->add('staticPrefix', TextType::class, [
             'translation' => $this->translation
         ]);
     }

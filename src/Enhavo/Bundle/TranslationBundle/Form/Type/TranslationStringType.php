@@ -7,8 +7,11 @@
  */
 namespace Enhavo\Bundle\TranslationBundle\Form\Type;
 
+use Enhavo\Bundle\TranslationBundle\Entity\TranslationString;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TranslationStringType extends AbstractType
@@ -25,21 +28,21 @@ class TranslationStringType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('translationKey', 'text', array(
+        $builder->add('translationKey', TextType::class, array(
             'label' => 'translation.form.label.translationKey',
             'translation_domain' => 'EnhavoTranslationBundle',
         ));
-        $builder->add('translationValue', 'text', array(
+        $builder->add('translationValue', TextType::class, array(
             'label' => 'translation.form.label.translationValue',
             'translation' => $this->translation,
             'translation_domain' => 'EnhavoTranslationBundle',
         ));
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Enhavo\Bundle\TranslationBundle\Entity\TranslationString'
+            'data_class' => TranslationString::class
         ));
     }
 

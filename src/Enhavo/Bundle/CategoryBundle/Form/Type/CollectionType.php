@@ -1,6 +1,7 @@
 <?php
 namespace Enhavo\Bundle\CategoryBundle\Form\Type;
 
+use Enhavo\Bundle\AppBundle\Form\Type\ListType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,7 +26,7 @@ class CollectionType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('categories', 'enhavo_list', array(
+        $builder->add('categories', ListType::class, array(
             'type' => $this->categoryType
         ));
     }

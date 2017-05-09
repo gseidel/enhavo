@@ -2,7 +2,12 @@
 
 namespace Enhavo\Bundle\ArticleBundle\Form\Type;
 
+use Enhavo\Bundle\CategoryBundle\Form\Type\CategoryType;
+use Enhavo\Bundle\ContentBundle\Form\Type\ContentType;
+use Enhavo\Bundle\GridBundle\Form\Type\GridType;
+use Enhavo\Bundle\MediaBundle\Form\Type\FilesType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -38,24 +43,24 @@ class ArticleType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('teaser', 'textarea', array(
+        $builder->add('teaser', TextareaType::class, array(
             'label' => 'form.label.teaser',
             'translation_domain' => 'EnhavoAppBundle',
             'translation' => $this->translation
         ));
 
-        $builder->add('picture', 'enhavo_files', array(
+        $builder->add('picture', FilesType::class, array(
             'label' => 'form.label.picture',
             'translation_domain' => 'EnhavoAppBundle',
             'multiple' => false
         ));
 
-        $builder->add('grid', 'enhavo_grid', array(
+        $builder->add('grid', GridType::class, array(
             'label' => 'form.label.content',
             'translation_domain' => 'EnhavoAppBundle',
         ));
 
-        $builder->add('categories', 'enhavo_category', array());
+        $builder->add('categories', CategoryType::class, array());
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -69,7 +74,7 @@ class ArticleType extends AbstractType
 
     public function getParent()
     {
-        return 'enhavo_content_content';
+        return ContentType::class;
     }
 
     public function getName()

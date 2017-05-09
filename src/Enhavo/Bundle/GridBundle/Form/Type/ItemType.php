@@ -10,9 +10,9 @@ namespace Enhavo\Bundle\GridBundle\Form\Type;
 
 use Enhavo\Bundle\GridBundle\Item\ItemTypeResolver;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormEvents;
@@ -33,11 +33,11 @@ class ItemType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('order', 'hidden', array(
+        $builder->add('order', HiddenType::class, array(
             'data' => 0
         ));
 
-        $builder->add('type', 'hidden');
+        $builder->add('type', HiddenType::class);
 
         $resolver = $this->resolver;
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($resolver){
@@ -70,10 +70,10 @@ class ItemType extends AbstractType
         return;
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Enhavo\Bundle\GridBundle\Entity\Item'
+            'data_class' => Item::class
         ));
     }
 

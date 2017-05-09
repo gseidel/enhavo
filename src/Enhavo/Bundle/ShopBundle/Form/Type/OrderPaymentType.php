@@ -23,7 +23,7 @@ class OrderPaymentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('payment', 'enhavo_shop_payment');
+        $builder->add('payment', PaymentType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

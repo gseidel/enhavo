@@ -11,6 +11,7 @@ namespace Enhavo\Bundle\ShopBundle\Form\Type;
 use Enhavo\Bundle\ShopBundle\Order\OrderAddressProvider;
 use Enhavo\Bundle\ShopBundle\Model\OrderInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvent;
@@ -54,7 +55,7 @@ class OrderAddressType extends AbstractType
                 if($data instanceof OrderInterface) {
                     $user = $data->getUser();
                     if($user === null) {
-                        $form->add('email', 'email');
+                        $form->add('email', EmailType::class);
                     }
                 }
             })

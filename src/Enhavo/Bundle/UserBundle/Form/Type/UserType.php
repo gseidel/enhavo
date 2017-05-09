@@ -8,19 +8,24 @@
 
 namespace Enhavo\Bundle\UserBundle\Form\Type;
 
+use Enhavo\Bundle\AppBundle\Form\Type\BooleanType;
+use Enhavo\Bundle\UserBundle\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username', 'text', array(
+        $builder->add('username', TextType::class, array(
             'label' => 'user.form.label.username',
             'translation_domain' => 'EnhavoUserBundle'
         ));
 
-        $builder->add('plainPassword', 'repeated', array(
+        $builder->add('plainPassword', RepeatedType::class, array(
             'type' => 'password',
             'options' => array('translation_domain' => 'FOSUserBundle'),
             'first_options' => array('label' => 'form.password'),
@@ -28,27 +33,27 @@ class UserType extends AbstractType
             'invalid_message' => 'fos_user.password.mismatch',
         ));
 
-        $builder->add('email', 'text', array(
+        $builder->add('email', TextType::class, array(
             'label' => 'user.form.label.email',
             'translation_domain' => 'EnhavoUserBundle'
         ));
 
-        $builder->add('firstName', 'text', array(
+        $builder->add('firstName', TextType::class, array(
             'label' => 'user.form.label.firstName',
             'translation_domain' => 'EnhavoUserBundle'
         ));
 
-        $builder->add('lastName', 'text', array(
+        $builder->add('lastName', TextType::class, array(
             'label' => 'user.form.label.lastName',
             'translation_domain' => 'EnhavoUserBundle'
         ));
 
-        $builder->add('admin', 'enhavo_boolean', array(
+        $builder->add('admin', BooleanType::class, array(
             'label' => 'user.form.label.admin',
             'translation_domain' => 'EnhavoUserBundle'
         ));
 
-        $builder->add('groups', 'entity', array(
+        $builder->add('groups', EntityType::class, array(
             'class' => 'EnhavoUserBundle:Group',
             'property' => 'name',
             'multiple' => true,
@@ -62,7 +67,7 @@ class UserType extends AbstractType
     public function getDefaultOptions()
     {
         return array(
-            'data_class' => 'enhavo/UserBundle/Entity/User'
+            'data_class' => User::class
         );
     }
 

@@ -37,7 +37,8 @@ class SubscribeFormRenderer extends \Twig_Extension
             $formTypeName = 'default';
         }
 
-        $form = $this->getFormFactory()->create($this->formResolver->resolveType($formTypeName));
+        $formType = $this->formResolver->resolveType($formTypeName);
+        $form = $this->getFormFactory()->create($formType);
 
         $formTemplate = $this->formResolver->resolveTemplate($formTypeName);
         if($template !== null){

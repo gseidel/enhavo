@@ -8,40 +8,42 @@
 
 namespace Enhavo\Bundle\GridBundle\Form\Type;
 
+use Enhavo\Bundle\GridBundle\Entity\PicturePicture;
 use Enhavo\Bundle\GridBundle\Item\ItemFormType;
+use Enhavo\Bundle\MediaBundle\Form\Type\FilesType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PicturePictureType extends ItemFormType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text', array(
+        $builder->add('title', TextType::class, array(
             'label' => 'form.label.title',
             'translation_domain' => 'EnhavoAppBundle',
             'translation' => $this->translation
         ));
 
-        $builder->add('fileLeft', 'enhavo_files', array(
+        $builder->add('fileLeft', FilesType::class, array(
             'label' => 'picturePicture.form.label.picture_left',
             'translation_domain' => 'EnhavoGridBundle',
             'multiple' => false
         ));
 
-        $builder->add('captionLeft', 'text', array(
+        $builder->add('captionLeft', TextType::class, array(
             'label' => 'picturePicture.form.label.caption_left',
             'translation_domain' => 'EnhavoGridBundle',
             'translation' => $this->translation
         ));
 
-        $builder->add('fileRight', 'enhavo_files', array(
+        $builder->add('fileRight', FilesType::class, array(
             'label' => 'picturePicture.form.label.picture_right',
             'translation_domain' => 'EnhavoGridBundle',
             'multiple' => false
         ));
 
-        $builder->add('captionRight', 'text', array(
+        $builder->add('captionRight', TextType::class, array(
             'label' => 'picturePicture.form.label.caption_right',
             'translation_domain' => 'EnhavoGridBundle',
             'translation' => $this->translation
@@ -51,7 +53,7 @@ class PicturePictureType extends ItemFormType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Enhavo\Bundle\GridBundle\Entity\PicturePicture'
+            'data_class' => PicturePicture::class
         ));
     }
 
