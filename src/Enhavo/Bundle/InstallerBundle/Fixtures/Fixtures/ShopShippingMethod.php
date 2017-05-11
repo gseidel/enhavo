@@ -24,6 +24,7 @@ class ShopShippingMethod extends AbstractFixture
         $shippingMethod->setCategory($this->getShippingCategory($args['category']));
         $shippingMethod->setCalculator($args['calculator']);
         $shippingMethod->setConfiguration($args['configuration']);
+        $shippingMethod->setPosition($args['position']);
         $shippingMethod->setCategoryRequirement(0);
         $shippingMethod->setEnabled(true);
         $shippingMethod->setCreatedAt(new \DateTime);

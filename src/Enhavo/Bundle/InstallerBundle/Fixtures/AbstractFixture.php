@@ -59,7 +59,7 @@ abstract class AbstractFixture implements FixtureInterface, OrderedFixtureInterf
             throw new \Exception(sprintf('fixtures file "%s" not found for name "%s"', $file, $name));
         }
 
-        $data = Yaml::parse($file);
+        $data = Yaml::parse(file_get_contents($file));
 
         $items = [];
         foreach ($data as $args) {

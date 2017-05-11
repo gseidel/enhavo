@@ -1,5 +1,5 @@
 -
-  email: demo@enhavo.com
+  email: 'demo@enhavo.com'
   username: admin
   password: admin
   roles:

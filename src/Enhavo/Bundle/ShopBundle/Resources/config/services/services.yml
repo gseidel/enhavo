@@ -55,7 +55,7 @@ services:
             - { name: enhavo.menu, alias: shop_product_option }
 
     enhavo.token_generator:
-        class: Sylius\Component\User\Security\Generator\TokenGenerator
+        class: FOS\UserBundle\Util\TokenGenerator
 
     enhavo_shop.button.billing:
         class: Enhavo\Bundle\ShopBundle\Button\BillingButton

@@ -47,7 +47,7 @@ class Migrator
     )
     {
         $this->em = $em;
-        $this->migrations = Yaml::parse($kernel->locateResource($migrationConfigPath));
+        $this->migrations = Yaml::parse(file_get_contents($kernel->locateResource($migrationConfigPath)));
         $this->container = $container;
         $this->versionAccessor = $versionAccessor;
     }

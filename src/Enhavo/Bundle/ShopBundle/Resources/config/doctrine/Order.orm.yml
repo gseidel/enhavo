@@ -3,9 +3,9 @@ Enhavo\Bundle\ShopBundle\Entity\Order:
     repositoryClass: Enhavo\Bundle\ShopBundle\Repository\OrderRepository
     table: shop_order
 
-    attributeOverride:
-        expiresAt:
-            nullable: true
+#    attributeOverride:
+#        expiresAt:
+#            nullable: true
 
     fields:
         checkoutState:
@@ -65,7 +65,7 @@ Enhavo\Bundle\ShopBundle\Entity\Order:
                 onDelete: SET NULL
 
         promotionCoupon:
-            targetEntity: Sylius\Component\Promotion\Model\CouponInterface
+            targetEntity: Sylius\Component\Promotion\Model\PromotionCouponInterface
             joinColumn:
                 onDelete: SET NULL
 

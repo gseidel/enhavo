@@ -23,6 +23,7 @@ class ShopPaymentMethod extends AbstractFixture
         $paymentMethod = new PaymentMethod();
         $paymentMethod->setCode($args['code']);
         $paymentMethod->setGateway($args['gateway']);
+        $paymentMethod->setPosition($args['position']);
         $paymentMethod->setEnabled(1);
         $paymentMethod->setCreatedAt(new \DateTime());
 

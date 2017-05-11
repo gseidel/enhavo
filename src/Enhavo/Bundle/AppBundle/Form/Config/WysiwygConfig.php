@@ -19,7 +19,7 @@ class WysiwygConfig
     public function __construct($configPath = null)
     {
         if(file_exists($configPath)) {
-            $this->config = Yaml::parse($configPath);
+            $this->config = Yaml::parse(file_get_contents($configPath));
         }
     }
 

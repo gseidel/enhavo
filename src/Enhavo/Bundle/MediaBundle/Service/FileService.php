@@ -298,7 +298,9 @@ class FileService
         $this->manager->flush();
 
         try {
-            copy($fileInfo['pathname'], $this->getDirectory($entityFile) . '/' . $entityFile->getId());
+            $targetDir = $this->getDirectory($entityFile);
+            $this->createPathIfNotExists($targetDir);
+            copy($fileInfo['pathname'], $targetDir . '/' . $entityFile->getId());
         } catch(\Exception $exception) {
             $this->manager->remove($entityFile);
             $this->manager->flush();

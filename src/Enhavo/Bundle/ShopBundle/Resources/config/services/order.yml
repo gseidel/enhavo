@@ -91,10 +91,15 @@ services:
     enhavo_shop.cart.user_cart_merger:
         class: Enhavo\Bundle\ShopBundle\Cart\UserCartMerger
         arguments:
-            - '@enhavo_shop.cart.user_cart_provider'
+            - '@enhavo_shop.cart.stored_cart_context'
             - '@sylius.context.cart.session_based'
-            - '@sylius.context.cart'
-            - '@doctrine.orm.default_entity_manager'
+            - '@doctrine.orm.entity_manager'
+
+    enhavo_shop.cart.stored_cart_context:
+        class: Enhavo\Bundle\ShopBundle\Cart\StoredCartContext
+        arguments:
+            - '@sylius.repository.order'
+            - '@security.token_storage'
 
     enhavo_shop.cart.user_cart_provider:
         class: Enhavo\Bundle\ShopBundle\Cart\UserCartProvider

@@ -8,11 +8,9 @@
 
 namespace Enhavo\Bundle\ShopBundle\Cart;
 
-
 use Enhavo\Bundle\UserBundle\Model\UserInterface;
-use Sylius\Component\Cart\Context\CartContext;
-use Sylius\Component\Cart\Provider\CartProviderInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Sylius\Component\Order\Context\CartContextInterface;
 
 /**
  * Class UserCartMerger
@@ -25,19 +23,14 @@ use Doctrine\ORM\EntityManagerInterface;
 class UserCartMerger
 {
     /**
-     * @var CartProviderInterface
+     * @var CartContextInterface
      */
-    private $userCartProvider;
+    private $storedCartContext;
 
     /**
-     * @var CartProviderInterface
+     * @var CartContextInterface
      */
-    private $cartProvider;
-
-    /**
-     * @var CartContext
-     */
-    private $cartContext;
+    private $currentCartContext;
 
     /**
      * @var EntityManagerInterface
@@ -45,14 +38,12 @@ class UserCartMerger
     private $em;
 
     public function __construct(
-        CartProviderInterface $userCartProvider,
-        CartProviderInterface $cartProvider,
-        CartContext $cartContext,
+        CartContextInterface $storedCartContext,
+        CartContextInterface $currentCartContext,
         EntityManagerInterface $em)
     {
-        $this->userCartProvider = $userCartProvider;
-        $this->cartProvider = $cartProvider;
-        $this->cartContext = $cartContext;
+        $this->currentCartContext = $currentCartContext;
+        $this->storedCartContext = $storedCartContext;
         $this->em = $em;
     }
 
@@ -62,14 +53,12 @@ class UserCartMerger
      */
     public function merge(UserInterface $user)
     {
-        $cart = $this->cartProvider->getCart();
+        $currentCart = $this->currentCartContext->getCart();
+        $storedCart = $this->storedCartContext->getCart();
 
-        if(!$cart->isEmpty()) {
-            $this->userCartProvider->setCart($cart);
-        } else {
-            $userCart = $this->userCartProvider->getCart();
-            if($userCart !== null && !$userCart->isEmpty()) {
-                $this->cartContext->setCurrentCartIdentifier($userCart);
+        if($storedCart !== $currentCart) {
+            foreach($storedCart->getItems() as $item) {
+                $currentCart->addItem($item);
             }
         }
 
