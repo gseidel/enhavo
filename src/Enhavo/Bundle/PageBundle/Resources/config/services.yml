@@ -8,7 +8,7 @@ services:
             - '%enhavo_page.routing.page.strategy%'
             - '%enhavo_page.routing.page.route%'
         tags:
-            - { name: form.type }
+            - { name: form.type, alias: enhavo_page_page }
 
     enhavo_page.widget.page:
         class: Enhavo\Bundle\PageBundle\Widget\PageWidget

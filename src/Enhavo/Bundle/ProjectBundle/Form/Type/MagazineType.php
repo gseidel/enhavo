@@ -84,7 +84,7 @@ class MagazineType extends AbstractResourceType
         }
 
         $builder->add('tags', ListType::class, [
-            'type' => 'text',
+            'entry_type' => TextType::class,
             'border' => $border,
             'sortable' => $sortable,
             'allow_delete' => $allowDelete,
@@ -92,15 +92,13 @@ class MagazineType extends AbstractResourceType
         ]);
         
         $builder->add('toc', ListType::class, [
-            'type' => 'enhavo_project_content',
+            'entry_type' => ContentType::class,
             'border' => $border,
             'sortable' => $sortable,
             'allow_delete' => $allowDelete,
             'allow_add' => $allowAdd
         ]);
     }
-
-
 
     public function getName()
     {

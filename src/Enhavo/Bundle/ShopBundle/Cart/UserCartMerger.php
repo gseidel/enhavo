@@ -11,6 +11,7 @@ namespace Enhavo\Bundle\ShopBundle\Cart;
 use Enhavo\Bundle\UserBundle\Model\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
+use Sylius\Component\Order\Context\CartNotFoundException;
 
 /**
  * Class UserCartMerger
@@ -53,8 +54,13 @@ class UserCartMerger
      */
     public function merge(UserInterface $user)
     {
-        $currentCart = $this->currentCartContext->getCart();
-        $storedCart = $this->storedCartContext->getCart();
+        try {
+            $currentCart = $this->currentCartContext->getCart();
+            $storedCart = $this->storedCartContext->getCart();
+        } catch (CartNotFoundException $e) {
+            //if cart not found we have nothing to do
+            return; 
+        }
 
         if($storedCart !== $currentCart) {
             foreach($storedCart->getItems() as $item) {

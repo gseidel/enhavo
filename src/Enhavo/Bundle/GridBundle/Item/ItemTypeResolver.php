@@ -122,21 +122,14 @@ class ItemTypeResolver
     public function getFormType($type)
     {
         $formType = $this->getDefinition($type)->getForm();
-        return $this->solveFormType($formType);
+        return $formType;
     }
 
-    /**
-     * @param $formType string
-     * @return FormType
-     */
-    protected function solveFormType($formType)
+    public function getFormTypeOptions($type)
     {
-        if(preg_match('#\\\#', $formType)) {
-            $form = new $formType($this->translation);
-        } else {
-            $form = $this->container->get($formType);
-        }
-        return $form;
+        return [
+            'translation' => $this->translation
+        ];
     }
 
     /**

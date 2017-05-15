@@ -3,7 +3,7 @@ namespace Enhavo\Bundle\GridBundle\Factory;
 
 use Enhavo\Bundle\GridBundle\Entity\Grid;
 use Enhavo\Bundle\GridBundle\Entity\Item;
-use Sylius\Component\Resource\Factory\Factory;
+use Enhavo\Bundle\AppBundle\Factory\Factory;
 
 class GridFactory extends Factory
 {

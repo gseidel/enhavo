@@ -9,6 +9,7 @@ namespace Enhavo\Bundle\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType as SymfonyDateTimeType;
 
 class DateTimeType extends AbstractType
 {
@@ -19,7 +20,7 @@ class DateTimeType extends AbstractType
 
     public function getParent()
     {
-        return 'datetime';
+        return SymfonyDateTimeType::class;
     }
 
     /**

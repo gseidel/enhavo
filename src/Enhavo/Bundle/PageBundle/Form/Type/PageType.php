@@ -3,6 +3,7 @@
 namespace Enhavo\Bundle\PageBundle\Form\Type;
 
 use Enhavo\Bundle\GridBundle\Form\Type\GridType;
+use Enhavo\Bundle\ContentBundle\Form\Type\ContentType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -50,7 +51,7 @@ class PageType extends AbstractType
 
     public function getParent()
     {
-        return 'enhavo_content_content';
+        return ContentType::class;
     }
 
     public function getName()

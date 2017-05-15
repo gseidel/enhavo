@@ -4,10 +4,24 @@ namespace Enhavo\Bundle\AppBundle\Controller;
 use Enhavo\Bundle\AppBundle\Exception\BadMethodCallException;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Bundle\ResourceBundle\Controller\NewResourceFactory;
+use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration as SyliusRequestConfiguration;
 
-class DuplicateResourceFactory extends NewResourceFactory implements DuplicateResourceFactoryInterface
+class DuplicateResourceFactory implements DuplicateResourceFactoryInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function create(SyliusRequestConfiguration $requestConfiguration, FactoryInterface $factory)
+    {
+        if (null === $method = $requestConfiguration->getFactoryMethod()) {
+            return $factory->createNew();
+        }
+
+        $arguments = array_values($requestConfiguration->getFactoryArguments());
+
+        return $factory->$method(...$arguments);
+    }
+
     /**
      * {@inheritdoc}
      */

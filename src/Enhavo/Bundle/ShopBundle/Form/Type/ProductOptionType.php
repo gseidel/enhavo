@@ -31,7 +31,7 @@ class ProductOptionType extends AbstractType
     {
         $builder->add('code', TextType::class);
         $builder->add('values', ListType::class, [
-            'type' => 'sylius_product_option_value'
+            'entry_type' => 'sylius_product_option_value'
         ]);
     }
 

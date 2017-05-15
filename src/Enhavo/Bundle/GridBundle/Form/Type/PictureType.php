@@ -22,7 +22,7 @@ class PictureType extends ItemFormType
         $builder->add('title', TextType::class, array(
             'label' => 'form.label.title',
             'translation_domain' => 'EnhavoAppBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('file', FilesType::class, array(
@@ -34,12 +34,13 @@ class PictureType extends ItemFormType
         $builder->add('caption', TextType::class, array(
             'label' => 'picture.form.label.caption',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => Picture::class
         ));

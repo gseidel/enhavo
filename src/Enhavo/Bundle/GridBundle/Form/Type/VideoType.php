@@ -2,6 +2,7 @@
 
 namespace Enhavo\Bundle\GridBundle\Form\Type;
 
+use Enhavo\Bundle\GridBundle\Entity\Video;
 use Symfony\Component\Form\FormBuilderInterface;
 use Enhavo\Bundle\GridBundle\Item\ItemFormType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,7 @@ class VideoType extends ItemFormType
         $builder->add('title', 'text', array(
             'label' => 'form.label.title',
             'translation_domain' => 'EnhavoAppBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('url', 'text', array(
@@ -24,8 +25,9 @@ class VideoType extends ItemFormType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
-            'data_class' => 'Enhavo\Bundle\GridBundle\Entity\Video'
+            'data_class' => Video::class
         ));
     }
 

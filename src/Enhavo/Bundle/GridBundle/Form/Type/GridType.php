@@ -8,6 +8,7 @@
 
 namespace Enhavo\Bundle\GridBundle\Form\Type;
 
+use Enhavo\Bundle\GridBundle\Entity\Grid;
 use Enhavo\Bundle\GridBundle\Item\ItemTypeResolver;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -38,7 +39,7 @@ class GridType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('items', CollectionType::class, array(
-            'type' => 'enhavo_grid_item',
+            'entry_type' => ItemType::class,
             'allow_delete' => true,
             'allow_add'    => true,
             'by_reference' => false
@@ -72,7 +73,7 @@ class GridType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => GridType::class,
+            'data_class' => Grid::class,
             'items' => array()
         ));
     }

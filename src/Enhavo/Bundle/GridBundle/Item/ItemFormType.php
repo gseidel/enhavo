@@ -11,23 +11,14 @@ namespace Enhavo\Bundle\GridBundle\Item;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class ItemFormType extends AbstractType
 {
     /**
      * @var string
      */
-    protected $translation;
-
-    /**
-     * @var string
-     */
     private $formName;
-
-    public function __construct($translation)
-    {
-        $this->translation = $translation;
-    }
 
     /**
      * @return string
@@ -50,5 +41,12 @@ abstract class ItemFormType extends AbstractType
         if($this->getFormName() !== null) {
             $view->vars['full_name'] = sprintf('%s[itemType]', $this->getFormName());
         }
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'translation' => false
+        ]);
     }
 }

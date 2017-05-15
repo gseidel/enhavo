@@ -27,7 +27,7 @@ class CollectionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('categories', ListType::class, array(
-            'type' => $this->categoryType
+            'entry_type' => $this->categoryType
         ));
     }
 

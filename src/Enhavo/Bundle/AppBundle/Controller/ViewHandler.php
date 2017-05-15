@@ -8,13 +8,30 @@
 
 namespace Enhavo\Bundle\AppBundle\Controller;
 
-use Sylius\Bundle\ResourceBundle\Controller\ViewHandler as SyliusViewHandler;
 use FOS\RestBundle\View\View;
 use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
+use Sylius\Bundle\ResourceBundle\Controller\ViewHandlerInterface;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use FOS\RestBundle\View\ViewHandler as RestViewHandler;
 
-class ViewHandler extends SyliusViewHandler
+class ViewHandler implements ViewHandlerInterface
 {
+    /**
+     * @var RestViewHandler
+     */
+    private $restViewHandler;
+
+    /**
+     * @param RestViewHandler $restViewHandler
+     */
+    public function __construct(RestViewHandler $restViewHandler)
+    {
+        $this->restViewHandler = $restViewHandler;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function handle(RequestConfiguration $requestConfiguration, View $view)
     {
         $response = $view->getResponse();
@@ -22,6 +39,16 @@ class ViewHandler extends SyliusViewHandler
             return $view->getResponse();
         }
 
-        return parent::handle($requestConfiguration, $view);
+        if (!$requestConfiguration->isHtmlRequest()) {
+            $this->restViewHandler->setExclusionStrategyGroups($requestConfiguration->getSerializationGroups());
+
+            if ($version = $requestConfiguration->getSerializationVersion()) {
+                $this->restViewHandler->setExclusionStrategyVersion($version);
+            }
+
+            $view->getSerializationContext()->enableMaxDepthChecks();
+        }
+
+        return $this->restViewHandler->handle($view);
     }
 }

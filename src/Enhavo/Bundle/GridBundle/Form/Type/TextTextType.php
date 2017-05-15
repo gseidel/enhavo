@@ -21,31 +21,31 @@ class TextTextType extends ItemFormType
         $builder->add('title', TextType::class, array(
             'label' => 'form.label.title',
             'translation_domain' => 'EnhavoAppBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('titleLeft', TextType::class, array(
             'label' => 'textText.form.label.title_left',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('textLeft', WysiwygType::class, array(
             'label' => 'textText.form.label.text_left',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('titleRight', TextType::class, array(
             'label' => 'textText.form.label.title_right',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('textRight', WysiwygType::class, array(
             'label' => 'textText.form.label.text_right',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('layout', ChoiceType::class, array(
@@ -63,6 +63,7 @@ class TextTextType extends ItemFormType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => TextText::class
         ));

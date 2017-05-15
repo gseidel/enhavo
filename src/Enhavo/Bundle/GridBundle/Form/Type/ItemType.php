@@ -44,7 +44,10 @@ class ItemType extends AbstractType
             $item = $event->getData();
             $form = $event->getForm();
             if(!empty($item) && isset($item['type'])) {
-                $form->add('itemType', $resolver->getFormType($item['type']));
+                $form->add(
+                    'itemType',
+                    $resolver->getFormType($item['type']),
+                    $resolver->getFormTypeOptions($item['type']));
             }
         });
 

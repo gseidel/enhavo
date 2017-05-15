@@ -21,7 +21,7 @@ class GalleryType extends ItemFormType
         $builder->add('title', TextType::class, array(
             'label' => 'form.label.title',
             'translation_domain' => 'EnhavoAppBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('text', WysiwygType::class, array(
@@ -38,6 +38,7 @@ class GalleryType extends ItemFormType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => Gallery::class
         ));

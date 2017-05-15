@@ -19,12 +19,13 @@ class CiteTextType extends ItemFormType
         $builder->add('cite', TextareaType::class, array(
             'label' => 'citeText.form.label.cite',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => CiteText::class
         ));

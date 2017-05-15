@@ -23,19 +23,19 @@ class TextPictureType extends ItemFormType
         $builder->add('title', TextType::class, array(
             'label' => 'form.label.title',
             'translation_domain' => 'EnhavoAppBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('text', WysiwygType::class, array(
             'label' => 'form.label.text',
             'translation_domain' => 'EnhavoAppBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('caption', TextType::class, array(
             'label' => 'textPicture.form.label.caption',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('file', FilesType::class, array(
@@ -75,6 +75,7 @@ class TextPictureType extends ItemFormType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => TextPicture::class
         ));

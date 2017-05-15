@@ -22,7 +22,7 @@ class ThreePictureType extends ItemFormType
         $builder->add('titleLeft', TextType::class, array(
             'label' => 'threePicture.form.label.title_left',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('fileLeft', FilesType::class, array(
@@ -34,13 +34,13 @@ class ThreePictureType extends ItemFormType
         $builder->add('captionLeft', TextType::class, array(
             'label' => 'threePicture.form.label.caption_left',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('titleCenter', TextType::class, array(
             'label' => 'threePicture.form.label.title_center',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('fileCenter', FilesType::class, array(
@@ -52,13 +52,13 @@ class ThreePictureType extends ItemFormType
         $builder->add('captionCenter', TextType::class, array(
             'label' => 'threePicture.form.label.caption_center',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('titleRight', TextType::class, array(
             'label' => 'threePicture.form.label.title_right',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
 
         $builder->add('fileRight', FilesType::class, array(
@@ -70,12 +70,13 @@ class ThreePictureType extends ItemFormType
         $builder->add('captionRight', TextType::class, array(
             'label' => 'threePicture.form.label.caption_right',
             'translation_domain' => 'EnhavoGridBundle',
-            'translation' => $this->translation
+            'translation' => $options['translation']
         ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        parent::configureOptions($resolver);
         $resolver->setDefaults(array(
             'data_class' => ThreePicture::class
         ));
