@@ -2,6 +2,15 @@
 
 namespace Enhavo\Bundle\UserBundle\DependencyInjection;
 
+use Enhavo\Bundle\AppBundle\Controller\ResourceController;
+use Enhavo\Bundle\AppBundle\Factory\Factory;
+use Enhavo\Bundle\UserBundle\Controller\UserController;
+use Enhavo\Bundle\UserBundle\Entity\Group;
+use Enhavo\Bundle\UserBundle\Entity\User;
+use Enhavo\Bundle\UserBundle\Form\Type\GroupType;
+use Enhavo\Bundle\UserBundle\Form\Type\UserType;
+use Enhavo\Bundle\UserBundle\Repository\GroupRepository;
+use Enhavo\Bundle\UserBundle\Repository\UserRepository;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -37,16 +46,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\UserBundle\Entity\User')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\UserBundle\Controller\UserController')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\UserBundle\Repository\UserRepository')->end()
-                                        ->scalarNode('factory')->defaultValue('Sylius\Component\Resource\Factory\Factory')->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue('Enhavo\Bundle\UserBundle\Form\Type\UserType')->cannotBeEmpty()->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('model')->defaultValue(User::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(UserController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(UserRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(UserType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -58,16 +62,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\UserBundle\Entity\Group')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\AppBundle\Controller\ResourceController')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\UserBundle\Repository\GroupRepository')->end()
-                                        ->scalarNode('factory')->defaultValue('Sylius\Component\Resource\Factory\Factory')->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue('Enhavo\Bundle\UserBundle\Form\Type\GroupType')->cannotBeEmpty()->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('model')->defaultValue(Group::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(GroupRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(GroupType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

@@ -2,9 +2,12 @@
 
 namespace Enhavo\Bundle\DownloadBundle\Form\Type;
 
+use Enhavo\Bundle\AppBundle\Form\Type\WysiwygType;
+use Enhavo\Bundle\MediaBundle\Form\Type\FilesType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Enhavo\Bundle\DownloadBundle\Entity\Download;
@@ -32,36 +35,36 @@ class DownloadType extends AbstractType
             $form = $event->getForm();
 
             if ($data instanceof Download && !empty($data->getId())) {
-                $form->add('link', 'text', array(
+                $form->add('link', TextType::class, array(
                     'mapped' => false,
                     'data' => $this->router->generate('enhavo_media_download', array(
                         'id' => $data->getId()
                     ), true),
-                    'read_only' => true
+                    'disabled' => true
                 ));
             }
         });
 
-        $builder->add('title', 'text', array(
+        $builder->add('title', TextType::class, array(
             'label' => 'form.label.title',
             'translation_domain' => 'EnhavoAppBundle',
             'translation' => $this->translation
         ));
 
-        $builder->add('text', 'enhavo_wysiwyg', array(
+        $builder->add('text', WysiwygType::class, array(
             'label' => 'form.label.text',
             'translation_domain' => 'EnhavoAppBundle',
             'translation' => $this->translation
         ));
 
-        $builder->add('file', 'enhavo_files', array(
+        $builder->add('file', FilesType::class, array(
             'label' => 'download.form.label.file',
             'translation_domain' => 'EnhavoDownloadBundle',
             'multiple'  => false
         ));
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => $this->dataClass

@@ -73,4 +73,9 @@ class WysiwygType extends AbstractType
     {
         return 'enhavo_wysiwyg';
     }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
 }

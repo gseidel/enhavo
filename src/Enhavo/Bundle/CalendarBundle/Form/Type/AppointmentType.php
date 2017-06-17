@@ -5,7 +5,7 @@ namespace Enhavo\Bundle\CalendarBundle\Form\Type;
 use Enhavo\Bundle\AppBundle\Form\Type\DateTimeType;
 use Enhavo\Bundle\ContentBundle\Form\Type\ContentType;
 use Enhavo\Bundle\GridBundle\Form\Type\GridType;
-use Enhavo\Bundle\GridBundle\Form\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Enhavo\Bundle\MediaBundle\Form\Type\FilesType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -74,7 +74,7 @@ class AppointmentType extends AbstractType
         $builder->add('externalId', TextType::class, array(
             'label' => 'appointment.form.label.externalId',
             'translation_domain' => 'EnhavoCalendarBundle',
-            'read_only' => true
+            'disabled' => true
         ));
 
         $builder->add('locationLongitude', TextType::class, array(
@@ -120,7 +120,7 @@ class AppointmentType extends AbstractType
         $builder->add('importerName', TextType::class, array(
             'label' => 'appointment.form.label.importerName',
             'translation_domain' => 'EnhavoCalendarBundle',
-            'read_only' => true
+            'disabled' => true
         ));
 
     }

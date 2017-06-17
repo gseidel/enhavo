@@ -90,7 +90,7 @@ class ContentType extends AbstractType
 
 
         $builder->add('tags', ListType::class, [
-            'entry_type' => 'text',
+            'entry_type' => TextType::class,
             'border' => $border,
             'sortable' => $sortable,
             'allow_delete' => $allowDelete,

@@ -3,7 +3,7 @@ namespace Enhavo\Bundle\MediaBundle\Factory;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Enhavo\Bundle\MediaBundle\Entity\File;
-use Sylius\Component\Resource\Factory\Factory;
+use Enhavo\Bundle\AppBundle\Factory\Factory;
 
 class FileFactory extends Factory
 {

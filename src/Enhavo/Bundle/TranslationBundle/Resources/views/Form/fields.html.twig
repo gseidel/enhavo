@@ -30,7 +30,7 @@
 {% endblock %}
 
 {% block textarea_widget %}
-    {% if translation %}
+    {% if translation is defined and translation %}
         <div class="translation">
             <div class="translation-input-container">
                 {% for locale, value in translations %}
@@ -47,7 +47,7 @@
 {% endblock %}
 
 {% block text_widget %}
-    {% if translation %}
+    {% if translation is defined and translation %}
         <div class="translation">
             <div class="translation-input-container">
                 {% for locale, value in translations %}
@@ -64,7 +64,7 @@
 {% endblock %}
 
 {% block enhavo_wysiwyg_widget %}
-    {% if translation %}
+    {% if translation is defined and translation %}
         <div class="translation" data-translation>
             <div class="wysiwyg-container" >
                 <textarea data-wysiwyg data-config="{{ config|e }}">{{ translations[currentLocale] }}</textarea>

@@ -10,13 +10,12 @@ namespace Enhavo\Bundle\SliderBundle\Form\Type;
 
 use Enhavo\Bundle\AppBundle\Form\Type\BooleanType;
 use Enhavo\Bundle\AppBundle\Form\Type\DateType;
-use Enhavo\Bundle\GridBundle\Form\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Enhavo\Bundle\MediaBundle\Form\Type\FilesType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SlideType extends AbstractType
 {

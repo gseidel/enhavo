@@ -19,6 +19,7 @@ services:
         class: '%enhavo_grid.form.item.class%'
         arguments:
             - '@enhavo_grid.item_type_resolver'
+            - '%enhavo_translation.translate%'
         tags:
             - { name: form.type, alias: enhavo_grid_item }
 
@@ -109,6 +110,8 @@ services:
 
     enhavo_grid.grid_item.three_picture:
         class: Enhavo\Bundle\GridBundle\Item\Configuration\ThreePictureConfiguration
+        arguments:
+
         tags:
             - { name: enhavo.grid_item, alias: three_picture }
 

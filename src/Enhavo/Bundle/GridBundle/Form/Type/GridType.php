@@ -42,7 +42,7 @@ class GridType extends AbstractType
             'entry_type' => ItemType::class,
             'allow_delete' => true,
             'allow_add'    => true,
-            'by_reference' => false
+            'by_reference' => false,
         ));
     }
 
@@ -74,12 +74,17 @@ class GridType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => Grid::class,
-            'items' => array()
+            'items' => array(),
         ));
     }
 
     public function getName()
     {
         return 'enhavo_grid';
+    }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
     }
 }

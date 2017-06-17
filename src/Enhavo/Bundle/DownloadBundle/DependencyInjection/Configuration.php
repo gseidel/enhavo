@@ -2,6 +2,11 @@
 
 namespace Enhavo\Bundle\DownloadBundle\DependencyInjection;
 
+use Enhavo\Bundle\DownloadBundle\Controller\ResourceController;
+use Enhavo\Bundle\DownloadBundle\Entity\Download;
+use Enhavo\Bundle\DownloadBundle\Factory\DownloadFactory;
+use Enhavo\Bundle\DownloadBundle\Form\Type\DownloadType;
+use Enhavo\Bundle\DownloadBundle\Repository\DownloadRepository;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -37,16 +42,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\DownloadBundle\Entity\Download')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\AppBundle\Controller\ResourceController')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\DownloadBundle\Repository\DownloadRepository')->end()
-                                        ->scalarNode('factory')->defaultValue('Enhavo\Bundle\DownloadBundle\Factory\DownloadFactory')->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue('Enhavo\Bundle\DownloadBundle\Form\Type\DownloadType')->cannotBeEmpty()->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('model')->defaultValue(Download::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(DownloadRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(DownloadFactory::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(DownloadType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

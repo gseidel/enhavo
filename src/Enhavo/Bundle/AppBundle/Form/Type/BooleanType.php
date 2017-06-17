@@ -82,8 +82,8 @@ class BooleanType extends AbstractType
     {
         $resolver->setDefaults(array(
             'choices' => array(
-                self::VALUE_TRUE => $this->translator->trans('label.yes', array(), 'EnhavoAppBundle'),
-                self::VALUE_FALSE => $this->translator->trans('label.no', array(), 'EnhavoAppBundle')
+                $this->translator->trans('label.yes', array(), 'EnhavoAppBundle') => self::VALUE_TRUE,
+                $this->translator->trans('label.no', array(), 'EnhavoAppBundle') => self::VALUE_FALSE
             ),
             'expanded' => true,
             'multiple' => false,
@@ -99,5 +99,10 @@ class BooleanType extends AbstractType
     public function getParent()
     {
         return ChoiceType::class;
+    }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
     }
 }

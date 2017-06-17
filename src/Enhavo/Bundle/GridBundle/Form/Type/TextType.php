@@ -44,4 +44,9 @@ class TextType extends ItemFormType
     {
         return 'enhavo_grid_item_text';
     }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
 }

@@ -2,6 +2,15 @@
 
 namespace Enhavo\Bundle\NewsletterBundle\DependencyInjection;
 
+use Enhavo\Bundle\AppBundle\Factory\Factory;
+use Enhavo\Bundle\NewsletterBundle\Controller\NewsletterController;
+use Enhavo\Bundle\NewsletterBundle\Controller\SubscriberController;
+use Enhavo\Bundle\NewsletterBundle\Entity\Newsletter;
+use Enhavo\Bundle\NewsletterBundle\Entity\Subscriber;
+use Enhavo\Bundle\NewsletterBundle\Form\Type\NewsletterType;
+use Enhavo\Bundle\NewsletterBundle\Form\Type\SubscriberType;
+use Enhavo\Bundle\NewsletterBundle\Repository\NewsletterRepository;
+use Enhavo\Bundle\NewsletterBundle\Repository\SubscriberRepository;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -39,16 +48,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\NewsletterBundle\Entity\Newsletter')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\NewsletterBundle\Controller\NewsletterController')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\NewsletterBundle\Repository\NewsletterRepository')->end()
-                                        ->scalarNode('factory')->defaultValue('Sylius\Component\Resource\Factory\Factory')->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue('Enhavo\Bundle\NewsletterBundle\Form\Type\NewsletterType')->cannotBeEmpty()->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('model')->defaultValue(Newsletter::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(NewsletterController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(NewsletterRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(NewsletterType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -61,16 +65,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\NewsletterBundle\Entity\Subscriber')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\NewsletterBundle\Controller\SubscriberController')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\NewsletterBundle\Repository\SubscriberRepository')->end()
-                                        ->scalarNode('factory')->defaultValue('Sylius\Component\Resource\Factory\Factory')->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue('Enhavo\Bundle\NewsletterBundle\Form\Type\SubscriberType')->cannotBeEmpty()->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('model')->defaultValue(Subscriber::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(SubscriberController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(SubscriberRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(SubscriberType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

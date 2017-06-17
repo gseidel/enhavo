@@ -9,11 +9,11 @@
 namespace Enhavo\Bundle\ProjectBundle\Form\Type;
 
 use Enhavo\Bundle\AppBundle\Form\Type\ListType;
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class MagazineType extends AbstractResourceType
+class MagazineType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

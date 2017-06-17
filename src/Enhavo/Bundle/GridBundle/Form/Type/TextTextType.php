@@ -9,7 +9,7 @@ namespace Enhavo\Bundle\GridBundle\Form\Type;
 use Enhavo\Bundle\AppBundle\Form\Type\WysiwygType;
 use Enhavo\Bundle\GridBundle\Item\ItemFormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Enhavo\Bundle\GridBundle\Entity\TextText;
@@ -18,13 +18,13 @@ class TextTextType extends ItemFormType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', TextType::class, array(
+        $builder->add('title', FormTextType::class, array(
             'label' => 'form.label.title',
             'translation_domain' => 'EnhavoAppBundle',
             'translation' => $options['translation']
         ));
 
-        $builder->add('titleLeft', TextType::class, array(
+        $builder->add('titleLeft', FormTextType::class, array(
             'label' => 'textText.form.label.title_left',
             'translation_domain' => 'EnhavoGridBundle',
             'translation' => $options['translation']
@@ -36,7 +36,7 @@ class TextTextType extends ItemFormType
             'translation' => $options['translation']
         ));
 
-        $builder->add('titleRight', TextType::class, array(
+        $builder->add('titleRight', FormTextType::class, array(
             'label' => 'textText.form.label.title_right',
             'translation_domain' => 'EnhavoGridBundle',
             'translation' => $options['translation']
@@ -72,5 +72,10 @@ class TextTextType extends ItemFormType
     public function getName()
     {
         return 'enhavo_grid_item_text_text';
+    }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
     }
 } 

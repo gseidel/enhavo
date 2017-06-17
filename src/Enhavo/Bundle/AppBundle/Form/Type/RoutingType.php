@@ -121,4 +121,9 @@ class RoutingType extends AbstractType
     {
         return 'enhavo_routing';
     }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
 }

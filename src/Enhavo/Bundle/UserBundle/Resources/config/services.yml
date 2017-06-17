@@ -22,12 +22,12 @@ services:
         tags:
             - { name: form.type }
 
-#    enhavo_user_group:
-#        class: '%enhavo_user.form.type.group.class%'
-#        tags:
-#            - { name: form.type }
-#        arguments:
-#            - '@security.roles.provider'
+    enhavo_user_group:
+        class: Enhavo\Bundle\UserBundle\Form\Type\GroupType
+        tags:
+            - { name: form.type, alias: 'enhavo_user_group' }
+        arguments:
+            - '@security.roles.provider'
 
     enhavo_user_change_email:
         class: Enhavo\Bundle\UserBundle\Form\Type\ChangeEmailType

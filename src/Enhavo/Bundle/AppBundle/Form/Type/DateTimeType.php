@@ -35,4 +35,9 @@ class DateTimeType extends AbstractType
             'format' => 'dd.MM.yyyy HH:mm',
         ));
     }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
 } 

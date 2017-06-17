@@ -45,4 +45,9 @@ class MessageType extends AbstractType
     {
         return 'enhavo_message';
     }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
 }

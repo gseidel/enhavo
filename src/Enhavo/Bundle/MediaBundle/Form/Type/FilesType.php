@@ -10,6 +10,7 @@ namespace Enhavo\Bundle\MediaBundle\Form\Type;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -134,6 +135,11 @@ class FilesType extends AbstractType
 
     public function getParent()
     {
-        return 'form';
+        return FormType::class;
+    }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
     }
 }

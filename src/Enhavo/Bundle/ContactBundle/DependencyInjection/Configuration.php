@@ -2,6 +2,8 @@
 
 namespace Enhavo\Bundle\ContactBundle\DependencyInjection;
 
+use Enhavo\Bundle\ContactBundle\Form\Type\ContactFormType;
+use Enhavo\Bundle\ContactBundle\Model\Contact;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -26,8 +28,8 @@ class Configuration implements ConfigurationInterface
                     ->useAttributeAsKey('name')
                     ->prototype('array')
                         ->children()
-                            ->scalarNode('model')->defaultValue('Enhavo\Bundle\ContactBundle\Model\Contact')->end()
-                            ->scalarNode('form')->defaultValue('Enhavo\Bundle\ContactBundle\Form\Type\ContactFormType')->end()
+                            ->scalarNode('model')->defaultValue(Contact::class)->end()
+                            ->scalarNode('form')->defaultValue(ContactFormType::class)->end()
                             ->arrayNode('template')
                                 ->addDefaultsIfNotSet()
                                 ->children()

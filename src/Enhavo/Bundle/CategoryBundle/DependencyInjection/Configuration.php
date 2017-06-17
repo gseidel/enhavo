@@ -2,6 +2,15 @@
 
 namespace Enhavo\Bundle\CategoryBundle\DependencyInjection;
 
+use Enhavo\Bundle\AppBundle\Controller\ResourceController;
+use Enhavo\Bundle\AppBundle\Factory\Factory;
+use Enhavo\Bundle\CategoryBundle\Entity\Category;
+use Enhavo\Bundle\CategoryBundle\Entity\Collection;
+use Enhavo\Bundle\CategoryBundle\Factory\CategoryFactory;
+use Enhavo\Bundle\CategoryBundle\Form\Type\CategoryType;
+use Enhavo\Bundle\CategoryBundle\Form\Type\CollectionType;
+use Enhavo\Bundle\CategoryBundle\Repository\CategoryRepository;
+use Enhavo\Bundle\CategoryBundle\Repository\CollectionRepository;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -38,16 +47,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\CategoryBundle\Entity\Collection')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\AppBundle\Controller\ResourceController')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\CategoryBundle\Repository\CollectionRepository')->end()
-                                        ->scalarNode('factory')->defaultValue('Sylius\Component\Resource\Factory\Factory')->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue('Enhavo\Bundle\CategoryBundle\Form\Type\CollectionType')->cannotBeEmpty()->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('model')->defaultValue(Collection::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(CollectionRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(CollectionType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -59,16 +63,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\CategoryBundle\Entity\Category')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\AppBundle\Controller\ResourceController')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\CategoryBundle\Repository\CategoryRepository')->end()
-                                        ->scalarNode('factory')->defaultValue('Enhavo\Bundle\CategoryBundle\Factory\CategoryFactory')->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue('Enhavo\Bundle\CategoryBundle\Form\Type\CategoryType')->cannotBeEmpty()->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('model')->defaultValue(Category::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(CategoryRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(CategoryFactory::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(CategoryType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

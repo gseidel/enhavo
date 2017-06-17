@@ -15,38 +15,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class ItemFormType extends AbstractType
 {
-    /**
-     * @var string
-     */
-    private $formName;
-
-    /**
-     * @return string
-     */
-    public function getFormName()
-    {
-        return $this->formName;
-    }
-
-    /**
-     * @param string $formName
-     */
-    public function setFormName($formName)
-    {
-        $this->formName = $formName;
-    }
-
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if($this->getFormName() !== null) {
-            $view->vars['full_name'] = sprintf('%s[itemType]', $this->getFormName());
+        if($options['form_name'] !== null) {
+            $view->vars['full_name'] = sprintf('%s[itemType]', $options['form_name']);
         }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'translation' => false
+            'translation' => false,
+            'form_name' => null
         ]);
     }
 }

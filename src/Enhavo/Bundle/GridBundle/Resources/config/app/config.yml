@@ -1,7 +1,6 @@
-#twig:
-#    form:
-#        resources:
-#            - 'EnhavoGridBundle:Form:fields.html.twig'
+twig:
+    form_themes:
+        - 'EnhavoGridBundle:Form:fields.html.twig'
 
 doctrine:
     orm:

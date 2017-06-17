@@ -35,4 +35,9 @@ class CiteTextType extends ItemFormType
     {
         return 'enhavo_grid_item_citetext';
     }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
 } 

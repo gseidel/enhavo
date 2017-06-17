@@ -10,6 +10,7 @@ namespace Enhavo\Bundle\UserBundle\Form\Type;
 
 use Enhavo\Bundle\AppBundle\Security\Roles\AdminRolesProvider;
 use Enhavo\Bundle\AppBundle\Security\Roles\RolesProvider;
+use Enhavo\Bundle\UserBundle\Entity\Group;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -53,7 +54,7 @@ class GroupType extends AbstractType
     public function getDefaultOptions()
     {
         return array(
-            'data_class' => 'enhavo/UserBundle/Entity/Group'
+            'data_class' => Group::class
         );
     }
 

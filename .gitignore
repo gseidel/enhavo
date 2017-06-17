@@ -24,3 +24,5 @@
 /node_modules
 /auth.json
 /var
+/bin
+!/bin/console

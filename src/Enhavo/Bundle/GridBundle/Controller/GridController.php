@@ -22,15 +22,15 @@ class GridController extends Controller
         $formFactory = $this->container->get('form.factory');
 
         $resolver = $this->container->get('enhavo_grid.item_type_resolver');
-        /** @var $formType ItemFormType */
         $formType = $resolver->getFormType($type);
-        $formType->setFormName($formName);
 
         $factory = $this->container->get('enhavo_grid.factory.item_type');
         $itemType = $factory->create($type);
 
         $form = $formFactory->create($formType, $itemType, array(
             'csrf_protection' => false,
+            'form_name' => $formName,
+            'translation' => $this->container->getParameter('enhavo_translation.translate')
         ));
         $label = $resolver->getLabel($type);
 

@@ -2,7 +2,7 @@
 
 namespace Enhavo\Bundle\ArticleBundle\Form\Type;
 
-use Enhavo\Bundle\CategoryBundle\Form\Type\CategoryType;
+use Enhavo\Bundle\CategoryBundle\Form\Type\CategoryEntityType;
 use Enhavo\Bundle\ContentBundle\Form\Type\ContentType;
 use Enhavo\Bundle\GridBundle\Form\Type\GridType;
 use Enhavo\Bundle\MediaBundle\Form\Type\FilesType;
@@ -60,7 +60,7 @@ class ArticleType extends AbstractType
             'translation_domain' => 'EnhavoAppBundle',
         ));
 
-        $builder->add('categories', CategoryType::class, array());
+        $builder->add('categories', CategoryEntityType::class, array());
     }
 
     public function configureOptions(OptionsResolver $resolver)

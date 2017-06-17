@@ -26,9 +26,15 @@ class ItemType extends AbstractType
      */
     protected $resolver;
 
-    public function __construct(ItemTypeResolver $itemTypeResolver)
+    /**
+     * @var boolean
+     */
+    protected $translation;
+
+    public function __construct(ItemTypeResolver $itemTypeResolver, $translation)
     {
         $this->resolver = $itemTypeResolver;
+        $this->translation = $translation;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -55,7 +61,9 @@ class ItemType extends AbstractType
             $item = $event->getData();
             $form = $event->getForm();
             if(!empty($item) && $item->getType()) {
-                $form->add('itemType', $resolver->getFormType($item->getType()));
+                $form->add('itemType', $resolver->getFormType($item->getType()), [
+                    'translation' => $this->translation
+                ]);
             }
         });
     }
@@ -83,5 +91,10 @@ class ItemType extends AbstractType
     public function getName()
     {
         return 'enhavo_grid_item';
+    }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
     }
 } 

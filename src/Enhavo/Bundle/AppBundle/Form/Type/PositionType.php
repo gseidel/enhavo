@@ -40,4 +40,9 @@ class PositionType extends AbstractType
             ]
         ));
     }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
 } 

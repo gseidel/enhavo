@@ -2,6 +2,11 @@
 
 namespace Enhavo\Bundle\TranslationBundle\DependencyInjection;
 
+use Enhavo\Bundle\AppBundle\Controller\ResourceController;
+use Enhavo\Bundle\AppBundle\Factory\Factory;
+use Enhavo\Bundle\TranslationBundle\Entity\TranslationString;
+use Enhavo\Bundle\TranslationBundle\Form\Type\TranslationStringType;
+use Enhavo\Bundle\TranslationBundle\Repository\TranslationStringRepository;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -59,16 +64,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\TranslationBundle\Entity\TranslationString')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\AppBundle\Controller\ResourceController')->end()
-                                        ->scalarNode('factory')->defaultValue('Sylius\Component\Resource\Factory\Factory')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\TranslationBundle\Repository\TranslationStringRepository')->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue('Enhavo\Bundle\TranslationBundle\Form\Type\TranslationStringType')->cannotBeEmpty()->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('model')->defaultValue(TranslationString::class)->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('repository')->defaultValue(TranslationStringRepository::class)->end()
+                                        ->scalarNode('form')->defaultValue(TranslationStringType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

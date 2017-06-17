@@ -2,6 +2,11 @@
 
 namespace Enhavo\Bundle\PageBundle\DependencyInjection;
 
+use Enhavo\Bundle\PageBundle\Controller\PageController;
+use Enhavo\Bundle\PageBundle\Entity\Page;
+use Enhavo\Bundle\PageBundle\Factory\PageFactory;
+use Enhavo\Bundle\PageBundle\Form\Type\PageType;
+use Enhavo\Bundle\PageBundle\Repository\PageRepository;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -45,11 +50,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\PageBundle\Entity\Page')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\PageBundle\Controller\PageController')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\PageBundle\Repository\PageRepository')->end()
-                                        ->scalarNode('factory')->defaultValue('Enhavo\Bundle\PageBundle\Factory\PageFactory')->end()
-                                        ->scalarNode('form')->defaultValue('Enhavo\Bundle\PageBundle\Form\Type\PageType')->end()
+                                        ->scalarNode('model')->defaultValue(Page::class)->end()
+                                        ->scalarNode('controller')->defaultValue(PageController::class)->end()
+                                        ->scalarNode('repository')->defaultValue(PageRepository::class)->end()
+                                        ->scalarNode('factory')->defaultValue(PageFactory::class)->end()
+                                        ->scalarNode('form')->defaultValue(PageType::class)->end()
                                     ->end()
                                 ->end()
                             ->end()

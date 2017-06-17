@@ -54,4 +54,9 @@ class RouteType extends AbstractType
     {
         return 'enhavo_route';
     }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
 }

@@ -2,6 +2,11 @@
 
 namespace Enhavo\Bundle\CalendarBundle\DependencyInjection;
 
+use Enhavo\Bundle\AppBundle\Factory\Factory;
+use Enhavo\Bundle\CalendarBundle\Controller\AppointmentController;
+use Enhavo\Bundle\CalendarBundle\Entity\Appointment;
+use Enhavo\Bundle\CalendarBundle\Form\Type\AppointmentType;
+use Enhavo\Bundle\CalendarBundle\Repository\AppointmentRepository;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -44,16 +49,11 @@ class Configuration implements ConfigurationInterface
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue('Enhavo\Bundle\CalendarBundle\Entity\Appointment')->end()
-                                        ->scalarNode('controller')->defaultValue('Enhavo\Bundle\CalendarBundle\Controller\AppointmentController')->end()
-                                        ->scalarNode('repository')->defaultValue('Enhavo\Bundle\CalendarBundle\Repository\AppointmentRepository')->end()
-                                        ->scalarNode('factory')->defaultValue('Sylius\Component\Resource\Factory\Factory')->end()
-                                        ->arrayNode('form')
-                                            ->addDefaultsIfNotSet()
-                                            ->children()
-                                                ->scalarNode('default')->defaultValue('Enhavo\Bundle\CalendarBundle\Form\Type\AppointmentType')->cannotBeEmpty()->end()
-                                            ->end()
-                                        ->end()
+                                        ->scalarNode('model')->defaultValue(Appointment::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(AppointmentController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(AppointmentRepository::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(AppointmentType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

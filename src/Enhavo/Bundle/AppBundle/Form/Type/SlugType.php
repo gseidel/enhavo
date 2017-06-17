@@ -31,4 +31,9 @@ class SlugType extends AbstractType
     {
         return TextType::class;
     }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
+    }
 }

@@ -120,8 +120,13 @@ class ListType extends AbstractType
             'allow_delete' => true
         ));
 
-        $resolver->setNormalizer('prototype_name', function(Options $options, $value) {
-            return '__' . $options['type'] . '__';
-        });
+//        $resolver->setNormalizer('prototype_name', function(Options $options, $value) {
+//            return $options['entry_type'];
+//        });
+    }
+
+    public function getBlockPrefix()
+    {
+        return $this->getName();
     }
 }
