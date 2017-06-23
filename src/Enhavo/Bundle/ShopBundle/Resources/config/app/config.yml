@@ -3,19 +3,6 @@ cmf_routing:
         controllers_by_class:
             Enhavo\Bundle\ShopBundle\Entity\Product: sylius.controller.product:showResourceAction
 
-#sylius_cart:
-#    resolver: enhavo.shop.cart_item_resolver
-#    resources:
-#        cart:
-#            classes:
-#                model: Enhavo\Bundle\ShopBundle\Entity\Order
-#                controller: Enhavo\Bundle\ShopBundle\Controller\CartController
-#
-#        cart_item:
-#            classes:
-#                model: Enhavo\Bundle\ShopBundle\Entity\OrderItem
-#                controller: Enhavo\Bundle\ShopBundle\Controller\CartItemController
-
 sylius_order:
     resources:
         order:
@@ -28,6 +15,16 @@ sylius_order:
         order_item:
             classes:
                 model: Enhavo\Bundle\ShopBundle\Entity\OrderItem
+                controller:  Enhavo\Bundle\ShopBundle\Controller\OrderItemController
+
+sylius_product:
+    resources:
+        product:
+            classes:
+                controller: Enhavo\Bundle\ShopBundle\Controller\ProductController
+                model: Enhavo\Bundle\ShopBundle\Entity\Product
+                repository: Enhavo\Bundle\ShopBundle\Repository\ProductRepository
+                form: Enhavo\Bundle\ShopBundle\Form\Type\ProductType
 
 sylius_shipping:
     resources:
@@ -80,6 +77,10 @@ sylius_payment:
     gateways:
         offline: Offline
         paypal_express_checkout: Paypal Express Checkout
+    resources:
+        payment_method:
+            classes:
+                model: Enhavo\Bundle\ShopBundle\Entity\PaymentMethod
 
 doctrine:
     orm:
@@ -168,22 +169,6 @@ jms_serializer:
 
 sylius_inventory:
     resources:
-
-sylius_product:
-    resources:
-        product:
-            classes:
-                controller: Enhavo\Bundle\ShopBundle\Controller\ProductController
-                model: Enhavo\Bundle\ShopBundle\Entity\Product
-                repository: Enhavo\Bundle\ShopBundle\Repository\ProductRepository
-                form: Enhavo\Bundle\ShopBundle\Form\Type\ProductType
-
-services:
-    sylius.builder.product_archetype:
-        class: Sylius\Component\Archetype\Builder\ArchetypeBuilder
-        arguments:
-          - '@sylius.factory.product_attribute_value'
-
 
 
 winzou_state_machine:

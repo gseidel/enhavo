@@ -1,0 +1,11 @@
+Enhavo\Bundle\ShopBundle\Entity\PaymentMethod:
+    type: entity
+    table: shop_payment_method
+
+    manyToOne:
+        gatewayConfig:
+            targetEntity: Sylius\Bundle\PayumBundle\Model\GatewayConfig
+            onDelete: SET NULL
+            nullable: true
+
+    lifecycleCallbacks: {  }

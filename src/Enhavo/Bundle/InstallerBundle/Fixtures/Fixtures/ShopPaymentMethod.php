@@ -10,7 +10,7 @@ namespace Enhavo\Bundle\InstallerBundle\Fixtures\Fixtures;
 
 
 use Enhavo\Bundle\InstallerBundle\Fixtures\AbstractFixture;
-use Sylius\Component\Payment\Model\PaymentMethod;
+use Enhavo\Bundle\ShopBundle\Entity\PaymentMethod;
 use Sylius\Component\Payment\Model\PaymentMethodTranslation;
 
 class ShopPaymentMethod extends AbstractFixture
@@ -22,7 +22,7 @@ class ShopPaymentMethod extends AbstractFixture
     {
         $paymentMethod = new PaymentMethod();
         $paymentMethod->setCode($args['code']);
-        $paymentMethod->setGateway($args['gateway']);
+        $paymentMethod->setGatewayConfig($this->findGatewayConfig($args['gatewayName']));
         $paymentMethod->setPosition($args['position']);
         $paymentMethod->setEnabled(1);
         $paymentMethod->setCreatedAt(new \DateTime());
@@ -44,6 +44,13 @@ class ShopPaymentMethod extends AbstractFixture
     function getName()
     {
         return 'ShopPaymentMethod';
+    }
+
+    function findGatewayConfig($name)
+    {
+        return $this->container->get('sylius.repository.gateway_config')->findOneBy([
+            'gatewayName' => $name
+        ]);
     }
 
     /**

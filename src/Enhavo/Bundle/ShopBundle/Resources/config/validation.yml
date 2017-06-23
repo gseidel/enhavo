@@ -11,6 +11,13 @@ Enhavo\Bundle\ShopBundle\Entity\Order:
         - Enhavo\Bundle\ShopBundle\Validator\Constraints\OrderPayment:
             groups: [payment]
 
+Enhavo\Bundle\ShopBundle\Entity\Product:
+    properties:
+        title:
+            - NotNull: { groups: [edit] }
+        code:
+            - NotNull: { groups: [edit] }
+
 Sylius\Component\Addressing\Model\Address:
     properties:
         firstName:

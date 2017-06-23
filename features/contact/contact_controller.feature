@@ -12,10 +12,10 @@ Feature: Contact Controller
     Given I am on "/contact/contact/submit"
     Then I should be on "/contact/contact/submit"
     When I fill in the following:
-      | enhavo_contact_contact_email     | 007@mi6.com.uk      |
-      | enhavo_contact_contact_firstName | James               |
-      | enhavo_contact_contact_lastName  | Bond                |
-      | enhavo_contact_contact_message   | Shaken, not stirred |
+      | contact_form_email     | 007@mi6.com.uk      |
+      | contact_form_firstName | James               |
+      | contact_form_lastName  | Bond                |
+      | contact_form_message   | Shaken, not stirred |
     And I press "Send"
     Then I should get an email on "admin@enhavo.com" with:
        """

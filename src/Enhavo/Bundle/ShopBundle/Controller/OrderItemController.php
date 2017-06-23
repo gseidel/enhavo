@@ -8,9 +8,9 @@
 
 namespace Enhavo\Bundle\ShopBundle\Controller;
 
-use Sylius\Bundle\CartBundle\Controller\CartItemController as SyliusCartItemController;
+use Sylius\Bundle\OrderBundle\Controller\OrderItemController as SyliusCartItemController;
 
-class CartItemController extends SyliusCartItemController
+class OrderItemController extends SyliusCartItemController
 {
     use CartSummaryTrait;
 }

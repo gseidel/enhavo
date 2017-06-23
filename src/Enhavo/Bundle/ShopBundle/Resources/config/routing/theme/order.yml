@@ -6,3 +6,29 @@ enhavo_shop_theme_order_show:
             repository:
                 method: findByToken
                 arguments: $token
+
+enhavo_shop_theme_cart_save:
+    path: /save.{_format}
+    defaults:
+        _controller: sylius.controller.order:saveAction
+        _format: json
+
+enhavo_shop_theme_cart_save_quantity:
+    path: /save/{id}/quantity.{_format}
+    defaults:
+        _controller: sylius.controller.order:saveQuantityAction
+        _format: json
+
+enhavo_shop_theme_cart_clear:
+    path: /clear.{_format}
+    defaults:
+        _controller: sylius.controller.order:clearAction
+        _format: json
+
+enhavo_shop_theme_cart_summary:
+    path: /summary.{_format}
+    defaults:
+        _controller: sylius.controller.order:summaryAction
+        _format: html
+        _sylius:
+            template: EnhavoShopBundle:Theme:Cart/summary.html.twig

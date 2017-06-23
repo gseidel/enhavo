@@ -11,6 +11,7 @@ namespace Enhavo\Bundle\ShopBundle\Form\Type;
 
 use Enhavo\Bundle\AppBundle\Form\Type\RouteType;
 use Enhavo\Bundle\MediaBundle\Form\Type\FilesType;
+use Sylius\Bundle\ShippingBundle\Form\Type\ShippingCategoryChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -71,7 +72,7 @@ class ProductType extends AbstractType
             'translation_domain' => 'EnhavoShopBundle',
         ));
 
-        $builder->add('shippingCategory', 'sylius_shipping_category_choice', array(
+        $builder->add('shippingCategory', ShippingCategoryChoiceType::class, array(
             'label' => 'product.label.shippingCategory',
             'translation_domain' => 'EnhavoShopBundle',
         ));
@@ -86,7 +87,7 @@ class ProductType extends AbstractType
             'translation_domain' => 'EnhavoShopBundle',
         ));
 
-        $builder->add('depth', 'text', array(
+        $builder->add('depth', TextType::class, array(
             'label' => 'product.label.depth',
             'translation_domain' => 'EnhavoShopBundle',
         ));
@@ -128,7 +129,8 @@ class ProductType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => $this->dataClass
+            'data_class' => $this->dataClass,
+            'validation_groups' => ['edit']
         ));
     }
 

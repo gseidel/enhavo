@@ -388,4 +388,6 @@ class Product extends SyliusProduct implements ProductInterface, Routeable
     {
         $this->slug = $slug;
     }
+    
+    
 }

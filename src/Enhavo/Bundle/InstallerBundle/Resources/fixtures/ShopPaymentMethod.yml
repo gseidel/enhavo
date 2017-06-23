@@ -1,6 +1,6 @@
 -
   code: prepayment
-  gateway: offline
+  gatewayName: Offline
   position: 1
   name:
     de: Vorkasse

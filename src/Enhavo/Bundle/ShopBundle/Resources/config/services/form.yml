@@ -117,3 +117,10 @@ services:
             - 'Enhavo\Bundle\ShopBundle\Entity\UserAddress'
         tags:
             - { name: form.type }
+
+    enhavo_shop.form.add_to_cart:
+        class: Enhavo\Bundle\ShopBundle\Form\Type\AddToCartType
+        arguments:
+            - 'Sylius\Bundle\OrderBundle\Controller\AddToCartCommand'
+        tags:
+            - { name: form.type }

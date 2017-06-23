@@ -21,6 +21,7 @@ class SyliusCompilerPass implements CompilerPassInterface
         $this->overwriteResourceResolver($container);
         $this->overwriteViewHandler($container);
         $this->overwriteNewResourceFactory($container);
+        $this->overwriteLocaleContext($container);
     }
 
     protected function overwriteRequestConfigurationFactory(ContainerBuilder $container)
@@ -74,5 +75,11 @@ class SyliusCompilerPass implements CompilerPassInterface
     {
         $definition = $container->getDefinition('sylius.resource_controller.new_resource_factory');
         $definition->setClass('Enhavo\Bundle\AppBundle\Controller\DuplicateResourceFactory');
+    }
+
+    protected function overwriteLocaleContext(ContainerBuilder $container)
+    {
+        $definition = $container->getDefinition('sylius.context.locale.composite');
+        $definition->setClass('Enhavo\Bundle\AppBundle\Locale\LocaleContext');
     }
 }

@@ -16,9 +16,9 @@ class SyliusCompilerPass implements CompilerPassInterface
 
     protected function overwriteOrderItemQuantityModifier(ContainerBuilder $container)
     {
-        $definition = $container->getDefinition('sylius.order_item_quantity_modifier');
-        $definition->setClass('Enhavo\Bundle\ShopBundle\Modifier\OrderItemQuantityModifier');
-        $definition->addArgument($container->getDefinition('sylius.factory.adjustment'));
+//        $definition = $container->getDefinition('sylius.order_item_quantity_modifier');
+//        $definition->setClass('Enhavo\Bundle\ShopBundle\Modifier\OrderItemQuantityModifier');
+//        $definition->addArgument($container->getDefinition('sylius.factory.adjustment'));
     }
 
     protected function overwriteProductOption(ContainerBuilder $container)

@@ -110,3 +110,12 @@ services:
             - '@fos_rest.view_handler'
         calls:
             - [setContainer, ['@service_container']]
+
+#    enhavo_article.extend_listener.article:
+#        class: Enhavo\Bundle\AppBundle\EventListener\DoctrineExtendListener
+#        arguments:
+#            - Sylius\Component\Product\Model\Product
+#            - '%sylius.model.product.class%'
+#            - true
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }

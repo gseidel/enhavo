@@ -1,0 +1,24 @@
+enhavo_shop_theme_order_item_add:
+    path: /add.{_format}
+    defaults:
+        _controller: sylius.controller.order_item:addAction
+#        _format: html
+        _format: json
+        _sylius:
+#            factory:
+#                method: createForProduct
+#                arguments: [expr:notFoundOnNull(service('sylius.repository.product').find($product))]
+            form:
+                type: Enhavo\Bundle\ShopBundle\Form\Type\AddToCartType
+                options:
+                    product: expr:notFoundOnNull(service('sylius.repository.product').find($product))
+            redirect:
+                route: sylius_shop_cart_summary
+                parameters: {}
+            flash: sylius.cart.add_item
+
+enhavo_shop_theme_order_item_remove:
+    path: /{id}/remove.{_format}
+    defaults:
+        _controller: sylius.controller.order_item:removeAction
+        _format: json

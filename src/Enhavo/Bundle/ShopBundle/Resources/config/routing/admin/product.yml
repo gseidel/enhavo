@@ -26,7 +26,7 @@ enhavo_shop_product_create:
     defaults:
         _controller: sylius.controller.product:createAction
         _sylius:
-            form: enhavo_shop_product
+            form: Enhavo\Bundle\ShopBundle\Form\Type\ProductType
             viewer:
                 translationDomain: EnhavoShopBundle
                 form:
@@ -54,7 +54,7 @@ enhavo_shop_product_update:
     defaults:
         _controller: sylius.controller.product:updateAction
         _sylius:
-            form: enhavo_shop_product
+            form: Enhavo\Bundle\ShopBundle\Form\Type\ProductType
             viewer:
                 translationDomain: EnhavoShopBundle
                 form:

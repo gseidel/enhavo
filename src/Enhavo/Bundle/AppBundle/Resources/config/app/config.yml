@@ -66,6 +66,9 @@ sylius_resource:
 #        locale_provider: enhavo.translation.locale_provider.contextual
     authorization_checker: enhavo_app.security.default_authorization_checker
 
+sylius_locale:
+    locale: "%locale%"
+
 enhavo_assets:
     require_js:
         paths:

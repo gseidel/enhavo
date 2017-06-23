@@ -92,4 +92,22 @@ class EventDispatcher implements EventDispatcherInterface
     {
         $this->eventDispatcher->dispatch($eventName, new PreviewEvent($requestConfiguration->getRequest(), $requestConfiguration));
     }
+
+    public function dispatchInitializeEvent(
+        $eventName,
+        RequestConfiguration $requestConfiguration,
+        ResourceInterface $resource
+    )
+    {
+        $eventName = $requestConfiguration->getEvent() ?: $eventName;
+        $metadata = $requestConfiguration->getMetadata();
+        $event = $this->getEvent($resource);
+
+        $this->eventDispatcher->dispatch(
+            sprintf('%s.%s.initialize_%s', $metadata->getApplicationName(), $metadata->getName(), $eventName),
+            $event
+        );
+
+        return $event;
+    }
 }
