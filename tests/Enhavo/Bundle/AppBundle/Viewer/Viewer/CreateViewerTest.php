@@ -3,8 +3,8 @@
 namespace spec\Enhavo\Bundle\AppBundle\Viewer;
 
 use Enhavo\Bundle\AppBundle\Mock\EntityMock;
-use Enhavo\Bundle\AppBundle\Viewer\Viewer\CreateViewer;
-use Enhavo\Bundle\AppBundle\Viewer\OptionAccessor;
+use Enhavo\Bundle\AppBundle\View\Type\CreateViewer;
+use Enhavo\Bundle\AppBundle\View\OptionAccessor;
 use PHPUnit\Framework\TestCase;
 
 class CreateViewerTest extends TestCase

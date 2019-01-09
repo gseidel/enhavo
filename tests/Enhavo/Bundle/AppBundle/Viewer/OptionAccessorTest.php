@@ -2,7 +2,7 @@
 
 namespace Enhavo\Bundle\AppBundle\Test\Viewer;
 
-use Enhavo\Bundle\AppBundle\Viewer\OptionAccessor;
+use Enhavo\Bundle\AppBundle\View\OptionAccessor;
 use PHPUnit\Framework\TestCase;
 
 class OptionAccessorTest extends TestCase

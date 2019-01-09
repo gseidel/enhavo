@@ -6,9 +6,10 @@
  * @author gseidel
  */
 
-namespace Enhavo\Bundle\AppBundle\Viewer\Viewer;
+namespace Enhavo\Bundle\AppBundle\View\Type;
 
 use Enhavo\Bundle\AppBundle\Controller\RequestConfiguration;
+use Enhavo\Bundle\AppBundle\View\ViewConfiguration;
 use Sylius\Component\Resource\Metadata\MetadataInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -21,9 +22,9 @@ class UpdateViewer extends CreateViewer
         return 'update';
     }
 
-    protected function buildTemplateParameters(ParameterBag $parameters, RequestConfiguration $requestConfiguration, array $options)
+    protected function buildTemplateParameters(ParameterBag $parameters, ViewConfiguration $viewConfiguration, array $options)
     {
-        parent::buildTemplateParameters($parameters, $requestConfiguration, $options);
+        parent::buildTemplateParameters($parameters, $viewConfiguration, $options);
 
         /** @var MetadataInterface $metadata */
         $metadata = $options['metadata'];
@@ -33,25 +34,25 @@ class UpdateViewer extends CreateViewer
         $parameters->set('form_action', $this->mergeConfig([
             sprintf('%s_%s_update', $metadata->getApplicationName(), $this->getUnderscoreName($metadata)),
             $options['form_action'],
-            $this->getViewerOption('form.action', $requestConfiguration)
+            $this->getViewerOption('form.action', $viewConfiguration)
         ]));
 
         $parameters->set('form_action_parameters', $this->mergeConfigArray([
             [ 'id' => $resource->getId() ],
             $options['form_action_parameters'],
-            $this->getViewerOption('form.action_parameters', $requestConfiguration)
+            $this->getViewerOption('form.action_parameters', $viewConfiguration)
         ]));
 
         $parameters->set('form_delete', $this->mergeConfig([
             sprintf('%s_%s_delete', $metadata->getApplicationName(), $this->getUnderscoreName($metadata)),
             $options['form_delete'],
-            $this->getViewerOption('form.delete', $requestConfiguration)
+            $this->getViewerOption('form.delete', $viewConfiguration)
         ]));
 
         $parameters->set('form_delete_parameters', $this->mergeConfigArray([
             [ 'id' => $resource->getId() ],
             $options['form_delete_parameters'],
-            $this->getViewerOption('form.delete_parameters', $requestConfiguration)
+            $this->getViewerOption('form.delete_parameters', $viewConfiguration)
         ]));
 
         $parameters->set('csrf_token', $this->container->get('security.csrf.token_manager')->getToken((string)$resource->getId())->getValue());
@@ -69,7 +70,7 @@ class UpdateViewer extends CreateViewer
                 ],
             ],
             $options['buttons'],
-            $this->getViewerOption('buttons', $requestConfiguration)
+            $this->getViewerOption('buttons', $viewConfiguration)
         ]));
 
         $parameters->set('data', $options['resource']);

@@ -8,7 +8,7 @@
 
 namespace Enhavo\Bundle\AppBundle\Controller;
 
-use Enhavo\Bundle\AppBundle\Viewer\ViewFactory;
+use Enhavo\Bundle\AppBundle\View\ViewFactory;
 use FOS\RestBundle\View\ViewHandlerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,7 +35,7 @@ class AppController extends AbstractController
 
     public function indexAction(Request $request)
     {
-        $view = $this->viewFactory->create('app', [
+        $view = $this->viewFactory->create('app', $request, [
             'request' => $request
         ]);
         return $this->viewHandler->handle($view);
@@ -43,7 +43,7 @@ class AppController extends AbstractController
 
     public function showAction($contentDocument, Request $request)
     {
-        $view = $this->viewFactory->create('base', [
+        $view = $this->viewFactory->create('base', $request, [
             'request' => $request,
             'resource' => $contentDocument
         ]);

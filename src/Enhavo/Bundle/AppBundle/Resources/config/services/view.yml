@@ -1,0 +1,87 @@
+services:
+    enhavo_app.view_collector:
+        public: true
+        class: Enhavo\Bundle\AppBundle\Type\TypeCollector
+        arguments:
+            - '@service_container'
+
+    view.factory:
+        public: true
+        class: Enhavo\Bundle\AppBundle\View\ViewFactory
+        arguments:
+            - '@enhavo_app.view_collector'
+            - '@Enhavo\Bundle\AppBundle\View\ViewConfigurationFactory'
+
+    Enhavo\Bundle\AppBundle\View\ViewConfigurationFactory:
+        arguments:
+            - '@sylius.resource_controller.parameters_parser'
+            - 'Enhavo\Bundle\AppBundle\View\ViewConfiguration'
+            - '@router'
+
+    Enhavo\Bundle\AppBundle\View\Type\IndexViewer:
+        public: true
+        arguments:
+            - '@sylius.resource_controller.request_configuration_factory'
+
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.view, alias: index }
+
+    Enhavo\Bundle\AppBundle\View\Type\CreateViewer:
+        public: true
+        arguments:
+            - '%enhavo_app.form_themes%'
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.view, alias: create }
+
+    Enhavo\Bundle\AppBundle\View\Type\UpdateViewer:
+        public: true
+        arguments:
+            - '%enhavo_app.form_themes%'
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.view, alias: update }
+
+    Enhavo\Bundle\AppBundle\View\Type\AppViewer:
+        public: true
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.view, alias: app }
+
+    Enhavo\Bundle\AppBundle\View\Type\BaseViewer:
+        public: true
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.view, alias: base }
+
+    Enhavo\Bundle\AppBundle\View\Type\TableViewer:
+        public: true
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.view, alias: table }
+
+    Enhavo\Bundle\AppBundle\View\Type\ListViewer:
+        public: true
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.view, alias: list }
+
+    Enhavo\Bundle\AppBundle\View\Type\PreviewViewer:
+        public: true
+        arguments:
+
+            - '@enhavo_app.preview.strategy_resolver'
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: enhavo.view, alias: preview }
+
+    Enhavo\Bundle\AppBundle\View\PreviewViewHandler:

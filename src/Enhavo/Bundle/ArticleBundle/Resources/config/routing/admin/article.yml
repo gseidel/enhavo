@@ -43,22 +43,22 @@ enhavo_article_article_update:
     defaults:
         _controller: enhavo_article.controller.article:updateAction
         _sylius:
-            viewer:
-                translationDomain: EnhavoArticleBundle
-                tabs:
-                    main:
-                        label: article.label.article
-                        template: EnhavoArticleBundle:Tab:article.html.twig
-                    content:
-                        label: article.label.content
-                        template: EnhavoArticleBundle:Tab:content.html.twig
-                    seo:
-                        label: article.label.seo
-                        template: EnhavoArticleBundle:Tab:seo.html.twig
-                buttons:
-                    preview:
-                        type: preview
-                        route: enhavo_article_article_preview
+        _view:
+            translationDomain: EnhavoArticleBundle
+            tabs:
+                main:
+                    label: article.label.article
+                    template: EnhavoArticleBundle:Tab:article.html.twig
+                content:
+                    label: article.label.content
+                    template: EnhavoArticleBundle:Tab:content.html.twig
+                seo:
+                    label: article.label.seo
+                    template: EnhavoArticleBundle:Tab:seo.html.twig
+            buttons:
+                preview:
+                    type: preview
+                    route: enhavo_article_article_preview
 
 enhavo_article_article_table:
     options:

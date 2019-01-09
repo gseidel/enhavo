@@ -8,7 +8,7 @@
 
 namespace Enhavo\Bundle\AppBundle\DependencyInjection\Compiler;
 
-use Enhavo\Bundle\AppBundle\Viewer\PreviewViewHandler;
+use Enhavo\Bundle\AppBundle\View\PreviewViewHandler;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;

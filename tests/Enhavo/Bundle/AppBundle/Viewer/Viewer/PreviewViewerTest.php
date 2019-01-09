@@ -1,8 +1,8 @@
 <?php
 
-namespace Enhavo\Bundle\AppBundle\Viewer;
+namespace Enhavo\Bundle\AppBundle\View;
 
-use Enhavo\Bundle\AppBundle\Viewer\Viewer\PreviewViewer;
+use Enhavo\Bundle\AppBundle\View\Type\PreviewViewer;
 use Symfony\Component\HttpFoundation\Response;
 use PHPUnit\Framework\TestCase;
 

@@ -34,7 +34,7 @@ class EnhavoAppBundle extends Bundle
         );
 
         $container->addCompilerPass(
-            new TypeCompilerPass('enhavo_app.viewer_collector', 'enhavo.viewer')
+            new TypeCompilerPass('enhavo_app.view_collector', 'enhavo.view')
         );
 
         $container->addCompilerPass(

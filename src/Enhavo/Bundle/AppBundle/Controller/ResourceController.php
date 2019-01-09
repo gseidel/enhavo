@@ -33,8 +33,8 @@ use Sylius\Bundle\ResourceBundle\Controller\AuthorizationCheckerInterface;
 use Sylius\Bundle\ResourceBundle\Controller\EventDispatcherInterface;
 use Sylius\Bundle\ResourceBundle\Controller\StateMachineInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Enhavo\Bundle\AppBundle\Viewer\ViewFactory;
-use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration as SyliusRequestConfiguration;
+use Enhavo\Bundle\AppBundle\View\ViewFactory;
+use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
 
 class ResourceController extends BaseController
 {
@@ -138,7 +138,7 @@ class ResourceController extends BaseController
             }
         }
 
-        $view = $this->viewFactory->create('create', [
+        $view = $this->viewFactory->create('create', $request, [
             'request_configuration' => $configuration,
             'metadata' => $this->metadata,
             'resource' => $newResource,
@@ -171,7 +171,7 @@ class ResourceController extends BaseController
             }
         }
 
-        $view = $this->viewFactory->create('update', [
+        $view = $this->viewFactory->create('update', $request, [
             'request_configuration' => $configuration,
             'metadata' => $this->metadata,
             'resource' => $resource,
@@ -204,11 +204,10 @@ class ResourceController extends BaseController
 
     public function indexAction(Request $request): Response
     {
-        /** @var RequestConfiguration $configuration */
         $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
         $this->isGrantedOr403($configuration, ResourceActions::INDEX);
 
-        $view = $this->viewFactory->create('index', [
+        $view = $this->viewFactory->create('index', $request, [
             'request_configuration' => $configuration,
             'metadata' => $this->metadata,
         ]);
@@ -218,7 +217,6 @@ class ResourceController extends BaseController
 
     public function previewAction(Request $request): Response
     {
-        /** @var RequestConfiguration $configuration */
         $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
 
         $this->appEventDispatcher->dispatchInitEvent(ResourceEvents::INIT_PREVIEW, $configuration);
@@ -234,7 +232,7 @@ class ResourceController extends BaseController
         $form = $this->resourceFormFactory->create($configuration, $resource);
         $form->handleRequest($request);
 
-        $view = $this->viewFactory->create('preview', [
+        $view = $this->viewFactory->create('preview', $request, [
             'request_configuration' => $configuration,
             'metadata' => $this->metadata,
             'resource' => $resource,
@@ -253,7 +251,7 @@ class ResourceController extends BaseController
         $this->isGrantedOr403($configuration, ResourceActions::INDEX);
         $resources = $this->resourcesCollectionProvider->get($configuration, $this->repository);
 
-        $view = $this->viewFactory->create('table', [
+        $view = $this->viewFactory->create('table', $request, [
             'request_configuration' => $configuration,
             'metadata' => $this->metadata,
             'resources' => $resources,
@@ -271,7 +269,7 @@ class ResourceController extends BaseController
         $this->isGrantedOr403($configuration, ResourceActions::INDEX);
         $resources = $this->resourcesCollectionProvider->get($configuration, $this->repository);
 
-        $view = $this->viewFactory->create('list', [
+        $view = $this->viewFactory->create('list', $request, [
             'request_configuration' => $configuration,
             'metadata' => $this->metadata,
             'resources' => $resources,
@@ -319,12 +317,12 @@ class ResourceController extends BaseController
     }
 
     /**
-     * @param SyliusRequestConfiguration $configuration
+     * @param RequestConfiguration $configuration
      * @param string $permission
      *
      * @throws AccessDeniedException
      */
-    protected function isGrantedOr403(SyliusRequestConfiguration $configuration, string $permission): void
+    protected function isGrantedOr403(RequestConfiguration $configuration, string $permission): void
     {
         if (!$configuration->hasPermission()) {
             $permission = $this->getRoleName($permission);

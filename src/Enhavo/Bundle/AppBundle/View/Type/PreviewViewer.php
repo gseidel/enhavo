@@ -6,26 +6,27 @@
  * @author gseidel
  */
 
-namespace Enhavo\Bundle\AppBundle\Viewer\Viewer;
+namespace Enhavo\Bundle\AppBundle\View\Type;
 
 use Enhavo\Bundle\AppBundle\Preview\StrategyResolver;
-use Enhavo\Bundle\AppBundle\Viewer\AbstractViewer;
-use Enhavo\Bundle\AppBundle\Viewer\ViewerUtil;
+use Enhavo\Bundle\AppBundle\View\AbstractViewer;
+use Enhavo\Bundle\AppBundle\View\AbstractViewType;
+use Enhavo\Bundle\AppBundle\View\ViewConfiguration;
+use Enhavo\Bundle\AppBundle\View\ViewerUtil;
 use FOS\RestBundle\View\View;
 use Sylius\Bundle\ResourceBundle\Controller\RequestConfigurationFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PreviewViewer extends AbstractViewer
+class PreviewViewer extends AbstractViewType
 {
     /**
      * @var StrategyResolver
      */
     private $strategyResolver;
 
-    public function __construct(RequestConfigurationFactory $requestConfigurationFactory, ViewerUtil $util, StrategyResolver $strategyResolver)
+    public function __construct(StrategyResolver $strategyResolver)
     {
-        parent::__construct($requestConfigurationFactory, $util);
         $this->strategyResolver = $strategyResolver;
     }
 
@@ -53,7 +54,7 @@ class PreviewViewer extends AbstractViewer
         return $response;
     }
 
-    public function createView($options = []): View
+    public function createView(ViewConfiguration $viewConfiguration, array $options = []): View
     {
         $view = View::create();
         $view->setResponse($this->createResponse($options));

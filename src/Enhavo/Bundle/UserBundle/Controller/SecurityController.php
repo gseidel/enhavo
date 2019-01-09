@@ -10,7 +10,7 @@ namespace Enhavo\Bundle\UserBundle\Controller;
 
 use FOS\RestBundle\View\ViewHandler;
 use FOS\UserBundle\Controller\SecurityController as FOSSecurityController;
-use Enhavo\Bundle\AppBundle\Viewer\ViewFactory;
+use Enhavo\Bundle\AppBundle\View\ViewFactory;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class SecurityController extends FOSSecurityController
@@ -39,7 +39,7 @@ class SecurityController extends FOSSecurityController
     {
         $request = $this->get('request_stack')->getCurrentRequest();
 
-        $view = $this->viewFactory->create('base', [
+        $view = $this->viewFactory->create('base', $request, [
             'template' => 'EnhavoUserBundle:Theme:Security/login.html.twig',
             'request' => $request,
             'parameters' => $data,

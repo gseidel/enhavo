@@ -3,7 +3,7 @@
 namespace spec\Enhavo\Bundle\AppBundle\Viewer;
 
 use Enhavo\Bundle\AppBundle\Mock\EntityMock;
-use Enhavo\Bundle\AppBundle\Viewer\ViewerFactory;
+use Enhavo\Bundle\AppBundle\View\ViewerFactory;
 use PHPUnit\Framework\TestCase;
 
 class ViewerFactoryTest extends TestCase

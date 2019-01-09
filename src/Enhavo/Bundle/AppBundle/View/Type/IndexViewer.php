@@ -6,35 +6,36 @@
  * @author gseidel
  */
 
-namespace Enhavo\Bundle\AppBundle\Viewer\Viewer;
+namespace Enhavo\Bundle\AppBundle\View\Type;
 
-use Enhavo\Bundle\AppBundle\Controller\RequestConfiguration;
+use Enhavo\Bundle\AppBundle\View\ViewConfiguration;
 use Sylius\Component\Resource\Metadata\MetadataInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class IndexViewer extends AppViewer
+class IndexViewer extends ResourceViewer
 {
     public function getType()
     {
         return 'index';
     }
 
-    protected function buildTemplateParameters(ParameterBag $parameters, RequestConfiguration $requestConfiguration, array $options)
+    protected function buildTemplateParameters(ParameterBag $parameters, ViewConfiguration $viewConfiguration, array $options)
     {
-        parent::buildTemplateParameters($parameters, $requestConfiguration, $options);
+        parent::buildTemplateParameters($parameters, $viewConfiguration, $options);
 
-
-        $parameters->set('blocks', $this->mergeConfigArray([
+        $parameters->set('blocks', $viewConfiguration->getArray('stylesheets', [
             $this->createBlock($options),
-            $options['blocks'],
-            $this->getViewerOption('blocks', $requestConfiguration)
+            $options['blocks']
         ]));
 
-        $parameters->set('actions', $this->mergeConfigArray([
+        $parameters->set('actions', $viewConfiguration->getArray('actions', [
             $this->createActions($options),
-            $options['actions'],
-            $this->getViewerOption('actions', $requestConfiguration)
+            $options['actions']
+        ]));
+
+        $parameters->set('title', $viewConfiguration->get('title', [
+            $options['title']
         ]));
     }
 
@@ -72,5 +73,12 @@ class IndexViewer extends AppViewer
     public function configureOptions(OptionsResolver $optionsResolver)
     {
         parent::configureOptions($optionsResolver);
+        $optionsResolver->setDefaults([
+            'title' => '',
+            'blocks' => [],
+            'actions' => [],
+            'apps' => ['app/Index'],
+            'template' => 'EnhavoAppBundle:Viewer:app.html.twig'
+        ]);
     }
 }

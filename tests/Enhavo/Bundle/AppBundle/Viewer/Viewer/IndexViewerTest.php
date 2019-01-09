@@ -1,9 +1,9 @@
 <?php
 
-namespace Enhavo\Bundle\AppBundle\Viewer\Viewer;
+namespace Enhavo\Bundle\AppBundle\View\Type;
 
-use Enhavo\Bundle\AppBundle\Viewer\OptionAccessor;
-use Enhavo\Bundle\AppBundle\Viewer\Viewer\IndexViewer;
+use Enhavo\Bundle\AppBundle\View\OptionAccessor;
+use Enhavo\Bundle\AppBundle\View\Type\IndexViewer;
 use PHPUnit\Framework\TestCase;
 
 class IndexViewerTest extends TestCase

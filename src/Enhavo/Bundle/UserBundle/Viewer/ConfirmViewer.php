@@ -8,8 +8,8 @@
 
 namespace Enhavo\Bundle\UserBundle\Viewer;
 
-use Enhavo\Bundle\AppBundle\Viewer\OptionAccessor;
-use Enhavo\Bundle\AppBundle\Viewer\AbstractViewer;
+use Enhavo\Bundle\AppBundle\View\OptionAccessor;
+use Enhavo\Bundle\AppBundle\View\AbstractViewer;
 
 class ConfirmViewer extends AbstractViewer
 {

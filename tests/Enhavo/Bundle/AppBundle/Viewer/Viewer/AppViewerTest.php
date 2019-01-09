@@ -1,8 +1,8 @@
 <?php
 
-namespace Enhavo\Bundle\AppBundle\Viewer\Viewer;
+namespace Enhavo\Bundle\AppBundle\View\Type;
 
-use Enhavo\Bundle\AppBundle\Viewer\Viewer\AppViewer;
+use Enhavo\Bundle\AppBundle\View\Type\AppViewer;
 use PHPUnit\Framework\TestCase;
 
 class AppViewerTest extends TestCase

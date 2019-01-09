@@ -6,7 +6,7 @@
  * Time: 21:47
  */
 
-namespace Enhavo\Bundle\AppBundle\Viewer;
+namespace Enhavo\Bundle\AppBundle\View;
 
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandler;

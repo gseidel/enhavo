@@ -6,20 +6,18 @@
  * @author gseidel
  */
 
-namespace Enhavo\Bundle\AppBundle\Viewer\Viewer;
+namespace Enhavo\Bundle\AppBundle\View\Type;
 
-use Enhavo\Bundle\AppBundle\Controller\RequestConfiguration;
-use Enhavo\Bundle\AppBundle\Viewer\AbstractViewer;
-use Enhavo\Bundle\AppBundle\Viewer\ViewerUtil;
+use Enhavo\Bundle\AppBundle\View\AbstractViewType;
+use Enhavo\Bundle\AppBundle\View\ViewConfiguration;
 use FOS\RestBundle\View\View;
-use Sylius\Bundle\ResourceBundle\Controller\RequestConfigurationFactory;
 use Sylius\Component\Resource\Metadata\MetadataInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CreateViewer extends AbstractViewer
+class CreateViewer extends AbstractViewType
 {
     /**
      * @var string[]
@@ -28,12 +26,10 @@ class CreateViewer extends AbstractViewer
 
     /**
      * CreateViewer constructor.
-     * @param RequestConfigurationFactory $requestConfigurationFactory
-     * @param ViewerUtil $util
+     * @param array $formThemes
      */
-    public function __construct(RequestConfigurationFactory $requestConfigurationFactory, ViewerUtil $util, array $formThemes)
+    public function __construct(array $formThemes)
     {
-        parent::__construct($requestConfigurationFactory, $util);
         $this->formThemes = $formThemes;
     }
 
@@ -45,7 +41,7 @@ class CreateViewer extends AbstractViewer
     /**
      * {@inheritdoc}
      */
-    protected function create($options): View
+    public function create($options): View
     {
         /** @var FormInterface $form */
         $form = $options['form'];
@@ -59,9 +55,9 @@ class CreateViewer extends AbstractViewer
         return parent::create($options);
     }
 
-    protected function buildTemplateParameters(ParameterBag $parameters, RequestConfiguration $requestConfiguration, array $options)
+    protected function buildTemplateParameters(ParameterBag $parameters, ViewConfiguration $viewConfiguration, array $options)
     {
-        parent::buildTemplateParameters($parameters, $requestConfiguration, $options);
+        parent::buildTemplateParameters($parameters, $viewConfiguration, $options);
 
         /** @var MetadataInterface $metadata */
         $metadata = $options['metadata'];
@@ -78,29 +74,29 @@ class CreateViewer extends AbstractViewer
                 ],
             ],
             $options['tabs'],
-            $this->getViewerOption('tabs', $requestConfiguration)
+            $this->getViewerOption('tabs', $viewConfiguration)
         ]));
 
         $parameters->set('form_template', $this->mergeConfig([
             $options['form_template'],
-            $this->getViewerOption('form.template', $requestConfiguration)
+            $this->getViewerOption('form.template', $viewConfiguration)
         ]));
 
         $parameters->set('form_action', $this->mergeConfig([
             sprintf('%s_%s_create', $metadata->getApplicationName(), $this->getUnderscoreName($metadata)),
             $options['form_action'],
-            $this->getViewerOption('form.action', $requestConfiguration)
+            $this->getViewerOption('form.action', $viewConfiguration)
         ]));
 
         $parameters->set('form_action_parameters', $this->mergeConfigArray([
             $options['form_action_parameters'],
-            $this->getViewerOption('form.action_parameters', $requestConfiguration)
+            $this->getViewerOption('form.action_parameters', $viewConfiguration)
         ]));
 
         $parameters->set('form_themes', $this->mergeConfigArray([
             $this->formThemes,
             $options['form_themes'],
-            $this->getViewerOption('form.themes', $requestConfiguration)
+            $this->getViewerOption('form.themes', $viewConfiguration)
         ]));
 
         $parameters->set('buttons', $this->mergeConfigArray([
@@ -113,7 +109,7 @@ class CreateViewer extends AbstractViewer
                 ]
             ],
             $options['buttons'],
-            $this->getViewerOption('buttons', $requestConfiguration)
+            $this->getViewerOption('buttons', $viewConfiguration)
         ]));
 
         $parameters->set('data', $options['resource']);

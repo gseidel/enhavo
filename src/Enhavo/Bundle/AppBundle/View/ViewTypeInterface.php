@@ -6,15 +6,15 @@
  * @author gseidel
  */
 
-namespace Enhavo\Bundle\AppBundle\Viewer;
+namespace Enhavo\Bundle\AppBundle\View;
 
 use Enhavo\Bundle\AppBundle\Type\TypeInterface;
 use FOS\RestBundle\View\View;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-interface ViewerInterface extends TypeInterface
+interface ViewTypeInterface extends TypeInterface
 {
-    public function createView($options): View;
+    public function createView(ViewConfiguration $viewConfiguration, array $options = []): View;
 
     public function configureOptions(OptionsResolver $optionsResolver);
 }
