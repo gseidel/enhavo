@@ -1,5 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
 const EnhavoEncore = require('./assets/node_modules/@enhavo/core/EnhavoEncore');
+const nodeExternals = require('webpack-node-externals');
 
 Encore
   .setOutputPath('public/build/')
@@ -13,6 +14,7 @@ Encore
   .enableSassLoader()
   .enableTypeScriptLoader()
   .enableBuildNotifications()
+  .configureRuntimeEnvironment()
 
   .addEntry('enhavo/main', './assets/enhavo/main')
   .addEntry('enhavo/index', './assets/enhavo/index')
@@ -28,6 +30,14 @@ Encore
   .addEntry('enhavo/login', './assets/enhavo/login')
 ;
 
-config = EnhavoEncore.getWebpackConfig(Encore.getWebpackConfig());
+let config = EnhavoEncore.getWebpackConfig(Encore.getWebpackConfig());
+//config.externals.push(nodeExternals());
+//config.devtool = 'inline-cheap-module-source-map';
+//config.output.devtoolModuleFilenameTemplate = '[absolute-resource-path]',
+//config.devtoolFallbackModuleFilenameTemplate = '[absolute-resource-path]?[hash]';
+
+config.target = 'node', // webpack should emit node.js compatible code
+config.externals = [nodeExternals()], // in order to ignore all modules in node_modules folder from bundling
+
 
 module.exports = config;
