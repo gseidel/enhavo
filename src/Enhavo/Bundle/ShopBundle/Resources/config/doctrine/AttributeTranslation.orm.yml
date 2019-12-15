@@ -1,0 +1,3 @@
+Enhavo\Bundle\ShopBundle\Entity\AttributeTranslation:
+    type: entity
+    table: shop_attribute_translation
