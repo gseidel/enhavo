@@ -16,5 +16,6 @@ class TextVueType extends AbstractVueType
     public function buildView(FormView $view, VueData $data)
     {
         $data['component'] = 'form-simple';
+        $data['type'] = 'text';
     }
 }
